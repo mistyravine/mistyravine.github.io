@@ -108,6 +108,24 @@ z-index:3;
 display:none;
 filter:grayscale(80%);
 }
+.button {
+  border: none;
+  color: rgb(175, 86, 86);
+  padding: 13px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  position:absolute;
+  top:136px;
+  right:16px;
+  border-radius: 7px;
+}
+.button:hover {
+  background-color: #000000;
+  color: white;
+}
 .window{
 background:#000;
 width:400px;
@@ -166,20 +184,21 @@ font-size:13px;
   <script>
     function play() {
       var audio = document.getElementById("audio");
-  audio.loop = true;
+  	audio.loop = true;
       audio.play();
     }
     function glitch() {
       $('.audio2').prop("volume", 0.6);
       document.getElementById("static").style.display = "block";
-      
+      var audio = document.getElementById("audio");
       var audio2 = document.getElementById("audio2");
-    
+    	audio.pause();
        audio2.loop = true; 
       audio2.play();
     }
     
   </script>
+<audio id="audio" src="audio/audio.mp3" type="audio/mpeg"></audio>	
 <audio id="audio2" src="audio/AFI - I Hope You Suffer.mp3" type="audio/mpeg"></audio>
   
 <div id="wallpaper">
@@ -192,6 +211,7 @@ font-size:13px;
 <div id="wrapper">
     <a href="#">
 <div id="avatar" onclick="glitch()"> </div>
+	    <button class="button" onclick="play()">Play</button>
 </a> 
 <script>
 var i = 0;
