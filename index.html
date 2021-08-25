@@ -10,6 +10,36 @@
 body{
   margin: 0;
 }
+h1{
+  text-align: center;
+}
+.animated {
+  font-family: courier, monospace;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-image: repeating-linear-gradient(
+-45deg, rgb(0, 255, 157) 3%, rgb(0, 238, 255) 18.6667%, rgb(0, 255, 234) 34.3333%, rgb(0, 255, 191) 50%);
+  animation-duration: 5s;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-animation: slide 20s linear infinite;
+}
+  @-webkit-keyframes slide {
+    from { background-position: 0; }
+    to { background-position: 500px; }
+}
+/* Text Background Animation */
+@keyframes moveBg {
+  0% {
+    background-position: 0% 20%;
+  }
+
+  100% {
+    background-position: 100% 20%;
+  }
+}	
 .frame{
   display: flex;
   flex-direction: row;
@@ -263,6 +293,8 @@ font-size:13px;
 <audio id="audio2" src="audio/AFI - I Hope You Suffer.mp3" type="audio/mpeg"></audio>
   
 <div id="wallpaper">
+	
+	<h1 class="animated">"My blade is swift and painless as well as slow and painful"</h1>
 
   <div id="static">
   </div>
