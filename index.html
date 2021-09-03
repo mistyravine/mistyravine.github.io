@@ -14,19 +14,20 @@ h1{
   text-align: center;
 }
 .animated {
-  font-family: courier, monospace;
+  font-family: courier, monospace, bold;
   margin: 0;
   padding: 0;
   font-size: 16px;
-  background-image: repeating-linear-gradient(
--45deg, rgb(0, 255, 157) 3%, rgb(0, 238, 255) 18.6667%, rgb(0, 255, 234) 34.3333%, rgb(0, 255, 191) 50%);
-  animation-duration: 5s;
+  background: repeating-linear-gradient(
+-45deg, rgb(47, 241, 167) 3%, rgb(0, 255, 191) 18.6667%, rgb(0, 195, 255) 34.3333%, rgb(8, 243, 125) 50%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-animation: slide 20s linear infinite;
+  
 }
-  @-webkit-keyframes slide {
+
+@-webkit-keyframes slide {
     from { background-position: 0; }
     to { background-position: 500px; }
 }
@@ -39,7 +40,7 @@ h1{
   100% {
     background-position: 100% 20%;
   }
-}	
+}
 .frame{
   display: flex;
   flex-direction: row;
