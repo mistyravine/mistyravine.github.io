@@ -1,0 +1,77 @@
+@charset 'UTF-8';
+ 
+/*CSS for animated*/
+body{
+    margin: 0;
+  }
+body{background:rgb(253, 253, 253);}
+
+.back{padding:0}
+.back{left:-24px}
+.back{margin:-12}
+.back{width:120%}
+.back{height:180%}
+.back{position:absolute}
+.back{z-index:-999}
+.back{background: url(http://i.imgur.com/LuWrqUK.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.back1{padding:0}
+.back1{left:-24px}
+.back1{margin:-12}
+.back1{width:120%}
+.back1{height:100%}
+.back1{position:absolute}
+.back1{z-index:-999}
+.back1{transition:none}
+.back1{background: url(wallhaven-d5yqdg.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.back2{padding:0}
+.back2{left:-24px}
+.back2{margin:-12}
+.back2{width:120%}
+.back2{height:100%}
+.back2{position:absolute}
+.back2{z-index:-999}
+.back2{transition:none}
+.back2{background: url(http://i.imgur.com/fmFLUUP.gif) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.back3{padding:0}
+.back3{left:-24px}
+.back3{margin:-12}
+.back3{width:120%}
+.back3{height:100%}
+.back3{position:absolute}
+.back3{z-index:-999}
+.back3{transition:none}
+.back3{background: url(http://i.imgur.com/vIcTXLB.gif) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.back4{padding:0}
+.back4{left:-24px}
+.back4{margin:-12}
+.back4{width:120%}
+.back4{height:100%}
+.back4{position:absolute}
+.back4{z-index:-999}
+.back4{transition:none}
+.back4{background: url(http://i.cubeupload.com/4gXPoI.gif) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}

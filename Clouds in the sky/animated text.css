@@ -1,0 +1,31 @@
+.nameWave {
+  background-size: 205% 100%;
+  background-position: 0 0;
+  -webkit-animation: nameWave 3s linear infinite normal;
+  animation: nameWave 8s linear infinite normal;
+  width: 100%;
+}
+  @keyframes nameWave {
+  0% {
+  background-position: 0 0;
+  }
+  100% {
+  background-position: 100% 0;
+  }
+}
+.layer1 {
+  position: absolute;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.name {
+  color: rgb(0, 255, 255);
+  height: 20px;
+  width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 19px;
+  font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
