@@ -124,6 +124,7 @@
   box-shadow: 0 30px 56px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 3;
+  border-style: groove;
 }
 .player__controls,
 .player__play,
