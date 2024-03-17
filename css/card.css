@@ -1,0 +1,60 @@
+#card {
+    height: 340px;
+    width: 200px;
+    position:absolute;
+    top: 65px;
+    left: 75px;
+    background-color: rgba(48, 44, 44, 0.5);
+    z-index: 1;
+    border-style:inset;
+    border-radius: 20px;
+    opacity: 0.5;
+}
+#card:hover{
+    opacity:1;
+}
+#pfp {
+    height:200px;
+    width: 200px;
+    background: url(images/pfp.jpg) no-repeat center/cover;
+    margin:auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.name {
+    font-size: 20px;
+    text-align: center;
+    color:yellow;
+    text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
+             1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+}
+.title{
+    font-size: 17px;
+    text-align: center;
+    background-image: repeating-linear-gradient(-45deg, rgb(255, 255, 255) 3%, rgb(0, 238, 255)14.75%, rgb(0, 211, 176) 26.5%, rgb(243, 247, 250) 38.25%, rgb(255, 255, 255) 50%);
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: arial;
+    animation-duration: 10s;
+    text-shadow: 0 0 10px rgb(254, 254, 255), 0 0 10px rgb(0, 255, 255), 0 0 10px rgb(0, 255, 221);
+}
+.titleWave {
+    background-size: 205% 100%;
+    background-position: 0 0;
+    -webkit-animation: nameWave 3s linear infinite normal;
+    animation: nameWave 8s linear infinite normal;
+    width: 100%;
+}
+@keyframes nameWave {
+    0% {
+    background-position: 0 0;
+    }
+    100% {
+    background-position: 100% 0;
+    }
+}
+.bio {
+    left: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+}
