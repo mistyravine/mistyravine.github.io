@@ -14,7 +14,7 @@ body{
     color:white;
     width: 600px; /* Set width as needed */
     height: 320px; /* Set height as needed */
-    background-image: url('images/container.jpg');
+    background-color: black;
     background-size: cover; /* Ensures the background covers the entire page */
     background-position: center; /* Centers the background */
     background-repeat: no-repeat;
