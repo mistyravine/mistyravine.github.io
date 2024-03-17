@@ -11,7 +11,7 @@ body{
   }
 .centered-container {
     position: relative;
-    background-color: #61d9dd; /* Green background color */
+    color:white;
     width: 600px; /* Set width as needed */
     height: 320px; /* Set height as needed */
     background-image: url('images/container.jpg');
