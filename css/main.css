@@ -19,7 +19,8 @@ body{
     background-position: center; /* Centers the background */
     background-repeat: no-repeat;
     border-radius: 20px;
-    border-style: outset
+    border-style: outset;
+    border-color: black;
 }
 .card-container {
   position: absolute; /* Change position to relative */
