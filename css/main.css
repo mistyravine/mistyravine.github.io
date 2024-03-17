@@ -14,7 +14,7 @@ body{
     background-color: #61d9dd; /* Green background color */
     width: 600px; /* Set width as needed */
     height: 320px; /* Set height as needed */
-    color: white; /* Text color */
+    background-image: url('images/container.jpg');
     background-size: cover; /* Ensures the background covers the entire page */
     background-position: center; /* Centers the background */
     background-repeat: no-repeat;
