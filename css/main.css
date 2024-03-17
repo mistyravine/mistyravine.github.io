@@ -52,7 +52,7 @@ body{
   left: 10px; /* 15px from the left */
   width: 400px; /* Set your desired width */
   height: 230px; /* Set your desired height */
-  background-image: url('images/mp3bg.gif');
+  background-color: black;
   background-size: cover; /* Ensures the background covers the entire page */
   background-position: center; /* Centers the background */
   background-repeat: no-repeat;/* Magenta background color for the top-left container */
