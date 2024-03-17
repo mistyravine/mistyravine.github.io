@@ -15,6 +15,7 @@
     margin-bottom: 20px;
     opacity: 0; /* Initially set opacity to 0 */
     transition: opacity 0.5s ease; /* Add transition effect */
+    color:rgb(255, 255, 255);
   }
   .navigation {
     cursor: pointer;
@@ -22,4 +23,5 @@
     user-select: none;
     bottom:10px;
     position: absolute;
+    color:rgb(255, 255, 255);
   }
