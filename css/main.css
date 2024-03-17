@@ -15,6 +15,9 @@ body{
     width: 600px; /* Set width as needed */
     height: 320px; /* Set height as needed */
     color: white; /* Text color */
+    background-size: cover; /* Ensures the background covers the entire page */
+    background-position: center; /* Centers the background */
+    background-repeat: no-repeat;
     border-radius: 20px;
     border-style: outset
 }
