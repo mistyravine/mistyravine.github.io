@@ -1,6 +1,6 @@
 
     document.addEventListener('DOMContentLoaded', function() {
-      const sentence = "No fucks given";
+      const sentence = "I'll be there at your side with a smile";
       const typewriterElement = document.getElementById('typewriter');
       const cursorElement = document.getElementById('cursor');
       let charIndex = 0;
