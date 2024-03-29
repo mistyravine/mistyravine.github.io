@@ -2,7 +2,8 @@ const quotes = [
     { quote: "Nothing. I felt nothing. No sadness or anger. No joy. No pain. No pleasure. I was free. Free to move, to go where I please. Free of desire. Free to see the universe for what it was. Empty", author: "- Sirus, Awakener of Worlds -" },
     { quote: "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.", author: "- Rumi -" },
     { quote: "Just because someone stumbles and loses their path, doesn't mean they're lost forever.", author: "- Charles Xavier -" },
-    { quote: "Without love, the truth cannot be seen", author: "- Umineko -" }
+    { quote: "Without love, the truth cannot be seen", author: "- Umineko -" },
+    { quote: "I shall never doubt the power of innocent dreamers", author: "- Queen Nehellenia -" }
   ];
   let currentQuote = 0;
 
