@@ -9,6 +9,7 @@
     border-style:inset;
     border-radius: 20px;
     opacity: 0.5;
+    text-align: center;
 }
 #card:hover{
     opacity:1;
@@ -29,22 +30,23 @@
              1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
 }
 .title{
-    font-size: 17px;
     text-align: center;
-    background-image: repeating-linear-gradient(-45deg, rgb(255, 255, 255) 3%, rgb(0, 238, 255)14.75%, rgb(0, 211, 176) 26.5%, rgb(243, 247, 250) 38.25%, rgb(255, 255, 255) 50%);
-    background-repeat: repeat;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 17px;
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+.titlelayer1{
+    position: absolute;
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: arial;
-    animation-duration: 10s;
-    text-shadow: 0 0 10px rgb(254, 254, 255), 0 0 10px rgb(0, 255, 255), 0 0 10px rgb(0, 255, 221);
 }
 .titleWave {
     background-size: 205% 100%;
     background-position: 0 0;
     -webkit-animation: nameWave 3s linear infinite normal;
-    animation: nameWave 8s linear infinite normal;
-    width: 100%;
+    animation: nameWave 3s linear infinite normal;
 }
 @keyframes nameWave {
     0% {
