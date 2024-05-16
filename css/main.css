@@ -82,3 +82,14 @@ body{
   background-size: cover;
   opacity: 0.3;
 }
+.overlay-container {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  display: flex; /* Use flexbox to position the images */
+  flex-direction: row; /* Arrange images horizontally */
+}
+
+.overlay-image {
+  margin-left: 10px; /* Add margin between the images */
+}
