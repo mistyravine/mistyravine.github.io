@@ -94,6 +94,7 @@ body{
   margin-left: 10px; /* Add margin between the images */
 }
 .text-box {
+      position: absolute;
       background-color: transparent;
       padding: 0;
       font-family: 'Sacramento', cursive;
