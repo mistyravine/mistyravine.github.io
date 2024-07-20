@@ -97,6 +97,8 @@ body{
       position: absolute;
       background-color: transparent;
       padding: 0;
+      bottom: 10px;
+      left: 10px;
       font-family: 'Sacramento', cursive;
       font-size: 64px;
       color: silver;
