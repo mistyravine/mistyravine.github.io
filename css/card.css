@@ -17,7 +17,9 @@
 #pfp {
     height:200px;
     width: 200px;
-    background: url(images/pfp.jpg) no-repeat center/cover;
+    background: url(images/pfp.gif);
+    background-repeat: no-repeat;
+    background-position: right;
     margin:auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
