@@ -18,8 +18,8 @@
     height:200px;
     width: 200px;
     background: url(images/pfp.jpg) no-repeat;
-    background-position: 72% 100%; 
-    background-size: cover;
+    background-position: center; 
+    background-size: contain;
     margin: auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
