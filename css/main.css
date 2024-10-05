@@ -91,7 +91,10 @@ body{
 }
 
 .overlay-image {
-  margin-left: 10px; /* Add margin between the images */
+  width: 200px;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 40px;
 }
 .text-box {
       position: absolute;
