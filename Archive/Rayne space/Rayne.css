@@ -1,0 +1,419 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://wallpapershome.com/images/pages/pic_h/26168.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.now-section,
+.floating-thought {
+    position: fixed;
+    right: 20px;
+    border-radius: 12px;
+    width: 250px;
+    font-size: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.now-section {
+    top: 20px;
+    padding: 12px 16px;
+    color: #f8f8f8;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    overflow: hidden;
+    max-height: 50vh; /* Set a maximum height for the now-section */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Include padding and border in the height */
+}
+
+/* Scrollbar styling for now-section */
+.now-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.now-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.now-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.now-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+.now-section::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 60%);
+    transform: rotate(45deg);
+}
+
+.now-title {
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: #ffffffdd;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 4px;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.now-section p {
+    margin: 0;
+    line-height: 1.4;
+    color: #f0f0f0;
+}
+
+.now-icon {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+}
+
+.now-content {
+    padding-top: 6px;
+    max-height: 500px; /* A large enough value to show all content when not collapsed */
+    overflow: hidden; /* Hide overflow initially */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1;
+}
+
+.now-section.collapsed .now-content {
+    max-height: 0; /* Collapse content */
+    opacity: 0; /* Fade out the content */
+    pointer-events: none; /* Make content not clickable when collapsed */
+    padding-top: 0; /* Remove padding when collapsed */
+}
+
+.now-section.collapsed {
+    /* Adjust padding for the collapsed state if needed for the overall section */
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.now-indicator {
+    width: 16px;
+    height: 16px;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-out;
+    margin-left: 8px;
+    flex-shrink: 0;
+    }
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    max-width: 768px;
+    height: 65vh;
+    box-sizing: border-box;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.card {
+    flex: 0 0 25%;
+    background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb, white);
+    border: 1px solid #8ecae6;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.banner {
+    height: 72px;
+    background-image: url('https://media1.tenor.com/m/SNN-ZvM9y1UAAAAd/cream-soda-cookie-cookie-run.gif');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid #8ecae6;
+}
+
+.profile-pic {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: relative;
+    top: -39px;
+    left: 12px;
+    background-image: url('https://media.tenor.com/DC_P_GH-4MIAAAAi/cream-soda-cookie-cookie-run-tower-of-adventures.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    padding: 10px;
+    padding-top: 0;
+    font-size: 12px;
+    margin-top: -28px;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 2px 0;
+    display: flex;
+    align-items: center;
+}
+
+.username-icon {
+    width: 32px;
+    height: 32px;
+    margin-left: 6px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+}
+
+.username-icon:hover {
+    transform: rotate(10deg) scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.gradient-name {
+    background: linear-gradient(135deg, #002aff, #d900ff, #0095ff, #8800ff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-loop 6s linear infinite;
+    text-shadow: 0 0 3px #ffffffaa;
+}
+
+.tagline {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.section {
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: #444;
+    font-size: 13px;
+}
+
+.roles span {
+    background-color: #f0f0f5;
+    border-radius: 10px;
+    padding: 3px 8px;
+    font-size: 10px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.roles span:hover {
+    background-color: #dce3f3;
+    transform: scale(1.1);
+}
+
+.connections a {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 6px;
+    margin-top: 4px;
+    font-size: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.connections a:hover {
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.right-box {
+    flex: 1;
+    margin-left: 16px;
+    background-color: #ffffffcc;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    border: 2px solid #8b5e3c;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.right-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.right-box::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.right-box::-webkit-scrollbar-thumb {
+    background: #a67c52;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.right-box::-webkit-scrollbar-thumb:hover {
+    background: #8b5e3c;
+}
+
+.content-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+.content-box:hover {
+    background: #f0f7ff;
+}
+
+.content-box .header {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.content-box .hashtags {
+    margin-top: 6px;
+    color: #555;
+    font-size: 10px;
+}
+
+.content-box img.single-img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.image-grid img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.responsive-iframe {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.responsive-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradient-loop {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    body{
+        overflow-y: auto;
+    }
+    .container {
+        flex-direction: column;
+        width: 90vw;
+        height: 192vh;
+        margin: 20px auto;
+    }
+
+    .card {
+        flex: none;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .right-box {
+        flex: 1;
+        width: 100%;
+        height:100%;
+        min-height: 0;
+        overflow-y: auto;
+        margin-left: 0;
+    }
+
+    .content {
+        margin-top: -12px;
+    }
+    .now-section p{
+        color:black
+    }
+    .now-title{
+        color:black
+    }
+}
+
+@media (max-width: 400px) {
+    .now-section {
+        display: none;
+    }
+}
