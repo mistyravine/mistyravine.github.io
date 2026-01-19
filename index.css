@@ -177,6 +177,18 @@ body {
     /* Đảm bảo video phủ kín diện tích */
 }
 
+.media-content video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* object-fit: cover giúp video lấp đầy khung hình mà không bị méo */
+    /* Nếu bạn muốn thấy toàn bộ khung hình video (chấp nhận khoảng đen), hãy dùng 'contain' */
+    object-fit: cover;
+
+    /* Đảm bảo bo góc đồng bộ với card nếu cần */
+    border-radius: inherit;
+}
+
 .media-content img {
     width: 100%;
     height: 100%;
