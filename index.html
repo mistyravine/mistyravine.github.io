@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,27 +13,32 @@
   <script src="index.js"></script>
   <link rel="icon" type="image/gif" href="https://i.ibb.co/prxLSCn4/ezgif-806d1d2ee61b81.gif">
 </head>
+
 <body>
   <!--Overlay-->
-<video class="video-overlay" autoplay loop muted playsinline>
-  <source src="videos/overlay2.mp4" type="video/mp4">
-</video>
-<!--Chạy chữ-->
+  <video class="video-overlay" autoplay loop muted playsinline>
+    <source src="videos/overlay2.mp4" type="video/mp4">
+  </video>
+  <!--Chạy chữ-->
   <div style="position:absolute; top:5%; left:50%; transform:translate(-50%, -50%); text-align:center; margin:auto">
-    <p class="namewave" style="font-weight: bold; margin: 0; font-size: 13px;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔 𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </p>
-<!--Nhạc-->
+    <p class="namewave" style="font-weight: bold; margin: 0; font-size: 13px;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </p>
+    <!--Nhạc-->
     <img src="https://i.pinimg.com/originals/7a/98/41/7a98413dbf3b22a08914cb78f4064a36.gif" onclick="playYT()"
       style="cursor:pointer; width:50px;position:relative">
     <div id="player" style="display:none"></div>
   </div>
   <!--Mưa-->
-<div class="rain" id="rainContainer"></div>
+  <div class="rain" id="rainContainer"></div>
   <div class="glass-container"> <!--Kính container-->
     <div class="sidebar"> <!--Sidebar nút nhấn-->
       <button class="nav-btn active" onclick="openTab(event, 'images')">Images</button>
       <button class="nav-btn" onclick="openTab(event, 'quotes')">Quotes</button>
       <button class="nav-btn" onclick="openTab(event, 'games')">Games</button>
+      <button class="nav-btn" onclick="openTab(event, 'music')">Music</button>
       <button class="nav-btn" onclick="openTab(event, 'videos')">Videos</button>
+      <img src="https://i.pinimg.com/originals/37/8e/45/378e452a0664fbe6b2409bb42a8e06bb.gif"
+        style="width:50px;height:50px">
     </div>
     <div class="media-wrapper"> <!--Ti vi-->
       <!--Hình-->
@@ -46,14 +52,16 @@
           <div class="media-footer">#Patty #Mapple Town</div>
         </div>
         <div class="media-card">
-          <div class="media-content"><img src="https://i.pinimg.com/originals/71/56/b7/7156b706d1579012e5129296b3459403.gif" alt="images3"></div>
+          <div class="media-content"><img
+              src="https://i.pinimg.com/originals/71/56/b7/7156b706d1579012e5129296b3459403.gif" alt="images3"></div>
           <div class="media-footer">#Minh Di</div>
         </div>
       </div>
       <!--Trích dẫn-->
       <div id="quotes" class="tab-content" style="display:none">
         <div class="media-card">
-          <p style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
+          <p
+            style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
             Nothing. I felt nothing. No sadness or anger. No joy. No pain. No pleasure.
             I was free. Free to move, to go where I please. Free of desire.
             Free to see the universe for what it was. Empty.
@@ -61,22 +69,56 @@
           <div class="media-footer">#Sirus #Awakener of Worlds</div>
         </div>
         <div class="media-card">
-          <p style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
+          <p
+            style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
             I shall never doubt the power of innocent dreamers
           </p>
           <div class="media-footer">#Queen Nehellenia</div>
         </div>
       </div>
+      <!--Games-->
       <div id="games" class="tab-content" style="display:none">
         <div class="media-card">
           <div class="media-content">
-            <img src="images/CSoda.jpg">
+            <iframe src="https://www.youtube.com/watch?v=Z2sMGO38nAo" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <div class="media-footer">#Cream Soda Cookie #CKR</div>
+          <div class="media-footer">#I Want You Everyday #Cookie Run</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <img src="https://assets-prd.ignimgs.com/2024/04/08/persona-1712577088693.png">
+          </div>
+          <div class="media-footer">#Persona</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <video playsinline controls>
+              <source src="videos/Lulingqi.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="media-footer">#Dynasty Warriors</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <video playsinline controls>
+              <source src="videos/Xushu.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="media-footer">#Dynasty Warriors</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <iframe src="https://www.youtube.com/watch?v=CAL4WMpBNs0" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="media-footer">#Doki Doki Literature Club!</div>
         </div>
       </div>
-      <!--Videos-->
-      <div id="videos" class="tab-content" style="display:none">
+      <!--Music-->
+      <div id="music" class="tab-content" style="display:none">
         <div class="media-card">
           <div class="media-content">
             <iframe src="https://www.youtube.com/embed/DSvksh6d21w?si=NAzfAq9Ly1srXkZn" title="YouTube video player"
@@ -84,7 +126,43 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <div class="media-footer">#Game #Screenshot</div>
+          <div class="media-footer">#Sacred Play Secret Place</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <video playsinline controls>
+              <source src="videos/I don't wanna live without your love.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="media-footer">#I don't wanna live without your love</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <iframe src="https://www.youtube.com/embed/DSvksh6d21w?si=NAzfAq9Ly1srXkZn" title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="media-footer">#Sienna</div>
+        </div>
+        <div class="media-card">
+          <div class="media-content">
+            <iframe src="https://www.youtube.com/watch?v=tbIIf6CeXa4" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="media-footer">#Sienna</div>
+        </div>
+      </div>
+      <!--Videos-->
+      <div id="videos" class="tab-content" style="display:none">
+        <div class="media-card">
+          <div class="media-content">
+            <iframe src="https://www.youtube.com/watch?v=vZO6Q0RfzS4" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="media-footer">#Mistico</div>
         </div>
       </div>
     </div>
@@ -100,8 +178,8 @@
             style="width:50px;height:50px">
         </div>
         <p class="bio-text">
-          Đôi cánh không thể bay vẫn có giá trị của nó, 
-          bởi dù có chuyện gì xảy ra, chúng vẫn mang trong mình ký ức 
+          Đôi cánh không thể bay vẫn có giá trị của nó,
+          bởi dù có chuyện gì xảy ra, chúng vẫn mang trong mình ký ức
           về việc đã từng có thể bay.
         </p>
       </div>
@@ -121,5 +199,5 @@
   </div>
   </div>
 </body>
-</html>
 
+</html>
