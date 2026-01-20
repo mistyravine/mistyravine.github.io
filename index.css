@@ -14,6 +14,38 @@ body {
     background-attachment: fixed;
 }
 
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -38,7 +70,6 @@ body {
     margin-top: 8px;
 }
 
-/* Full-page rain container */
 .rain {
     position: fixed;
     inset: 0;
@@ -47,25 +78,22 @@ body {
     z-index: 9999;
 }
 
-/* Each raindrop */
 .rain__drop {
     position: absolute;
     top: -10vh;
     left: calc(var(--x) * 1%);
-    width: 3px;
+    width: 2.5px;
     height: 50px;
 
     opacity: var(--o);
     transform: scaleY(var(--s)) rotate(calc(var(--d) * 1deg));
-    animation: rain-fall calc(2s / var(--a)) linear infinite;
+    animation: rain-fall calc(2s / var(--a)) var(--delay) linear infinite;
 }
 
-/* SVG coloring */
 .rain__drop path {
     fill: rgba(180, 220, 255, 0.7);
 }
 
-/* Falling animation */
 @keyframes rain-fall {
     from {
         transform:
@@ -81,11 +109,8 @@ body {
 .glass-container {
     display: flex;
     width: 850px;
-    /* Nhỏ gọn như hình mẫu */
     height: 420px;
-    /* Chiều cao cố định dạng widget */
     background: rgba(0, 0, 0, 0.6);
-    /* Đen trong suốt */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -94,7 +119,6 @@ body {
     gap: 10px;
 }
 
-/* --- 1. Sidebar --- */
 .sidebar {
     width: 100px;
     display: flex;
@@ -122,7 +146,6 @@ body {
     color: #fff;
 }
 
-/* --- 2. Media Wrapper (Giữa) --- */
 .media-wrapper {
     flex: 1;
     height: 300px;
@@ -131,7 +154,6 @@ body {
     padding-right: 5px;
 }
 
-/* Custom Scrollbar nhỏ gọn */
 .media-wrapper::-webkit-scrollbar {
     width: 4px;
 }
@@ -147,20 +169,26 @@ body {
     border-radius: 8px;
     box-sizing: border-box;
     height: 100%;
-    /* Card luôn cao bằng đúng wrapper */
     width: 100%;
     margin-bottom: 0;
-    /* Xóa margin để không bị lệch điểm dừng */
     overflow: hidden;
     scroll-snap-align: start;
-    /* Điểm hít là đầu mỗi card */
     display: flex;
     flex-direction: column;
 }
 
+.media-card p {
+    transition: transform 0.3s ease;
+    backface-visibility: hidden;
+}
+
+.media-card:hover p {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 .media-content {
     flex: 1;
-    /* Ảnh sẽ tự giãn ra chiếm hết phần còn lại của card */
     width: 100%;
     min-height: 0;
     position: relative;
@@ -174,18 +202,13 @@ body {
     height: 100%;
     border: none;
     object-fit: cover;
-    /* Đảm bảo video phủ kín diện tích */
 }
 
 .media-content video {
     width: 100%;
     height: 100%;
     display: block;
-    /* object-fit: cover giúp video lấp đầy khung hình mà không bị méo */
-    /* Nếu bạn muốn thấy toàn bộ khung hình video (chấp nhận khoảng đen), hãy dùng 'contain' */
     object-fit: cover;
-
-    /* Đảm bảo bo góc đồng bộ với card nếu cần */
     border-radius: inherit;
 }
 
@@ -207,10 +230,8 @@ body {
     flex-shrink: 0;
 }
 
-/* --- 3. Profile Section (Phải) --- */
 .profile-section {
     width: 220px;
-    /* Size cố định cho phần profile */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -228,11 +249,9 @@ body {
     padding: 15px;
 }
 
-/* -- Main Bio -- */
 .main-bio {
     text-align: center;
     flex-grow: 1;
-    /* Chiếm phần lớn diện tích cột phải */
 }
 
 .avatar {
@@ -241,7 +260,6 @@ body {
     border-radius: 50%;
     margin: 0 auto 10px;
     border: 2px solid #d6336c;
-    /* Viền hồng giống ảnh mẫu */
     overflow: hidden;
 }
 
@@ -268,7 +286,6 @@ body {
     margin-top: 0px;
 }
 
-/* -- Contact Info Box -- */
 .contact-info {
     display: flex;
     gap: 10px;
@@ -289,23 +306,16 @@ body {
     gap: 2px;
 }
 
-/* 1. Container to position the iframe */
 .video-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    /* 100% of viewport width */
     height: 100vh;
-    /* 100% of viewport height */
     object-fit: cover;
-    /* Ensures video fills screen without stretching */
     mix-blend-mode: screen;
-    /* Removes the black background */
     pointer-events: none;
-    /* Allows clicking buttons underneath */
     z-index: 0;
-    /* Keeps it on top of other content */
 }
 
 .video-overlay iframe {
@@ -348,12 +358,9 @@ body {
 
 @media (max-width: 875px) {
 
-    /* 1. Wrapper chung: Căn giữa màn hình và tạo khoảng hở lề */
     body {
         display: block;
-        /* Chuyển sang block để margin auto hoạt động */
         padding: 10vh 0;
-        /* Khoảng hở 10% trên dưới */
         height: auto;
     }
 
@@ -364,15 +371,12 @@ body {
     .glass-container {
         flex-direction: column;
         width: 90%;
-        /* Chiếm 90% chiều ngang */
         margin: 0 auto;
-        /* Căn giữa wrapper, tạo lề trái/phải bằng nhau */
         height: auto;
         min-height: 80vh;
         display: flex;
     }
 
-    /* 2. Sidebar trên cùng */
     .sidebar {
         width: 100%;
         order: 1;
@@ -382,7 +386,6 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* 3. Card Profile: Nằm dưới nút, chia 25/75 */
     .profile-section {
         width: 100%;
         order: 2;
@@ -392,13 +395,11 @@ body {
         margin-bottom: 15px;
     }
 
-    /* Khối trái (25%): Ảnh và Tên dính lề trái hoàn toàn */
     .main-bio {
         width: 25%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        /* Ép về trái */
         justify-content: center;
         background: none;
         padding: 0;
@@ -410,7 +411,6 @@ body {
         margin: 10px;
     }
 
-    /* Khối phải (75%): Bio căn giữa trong vùng của nó */
     .bio-text {
         display: flex;
         align-items: center;
@@ -419,10 +419,8 @@ body {
         font-size: 0.8rem;
         padding: 0 10px 0 10px;
         border-left: 1px solid rgba(255, 255, 255, 0.782);
-        /* Vạch ngăn cách nhẹ */
     }
 
-    /* 4. Media Wrapper dưới cùng */
     .media-wrapper {
         width: 100%;
         order: 3;
