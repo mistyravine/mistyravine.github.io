@@ -12,9 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="index.js"></script>
   <link rel="icon" type="image/gif" href="https://i.ibb.co/prxLSCn4/ezgif-806d1d2ee61b81.gif">
+  <link rel="preload" as="image" href="images/Preload.gif">
+  <link rel="preload" as="image" href="./images/loading.gif">
 </head>
 
 <body>
+  <div id="loader">
+    <img src="images/Preload.gif" alt="Loading...">
+  </div>
+  </div>
   <!--Overlay-->
   <video class="video-overlay" autoplay loop muted playsinline>
     <source src="videos/overlay2.mp4" type="video/mp4">
@@ -59,7 +65,8 @@
       </div>
       <!--Trích dẫn-->
       <div id="quotes" class="tab-content" style="display:none">
-        <div class="media-card">
+        <div class="media-card" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url(https://i.ytimg.com/vi/O0pwSQbwKPE/maxresdefault.jpg) no-repeat center/cover">
           <p
             style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
             Nothing. I felt nothing. No sadness or anger. No joy. No pain. No pleasure.
@@ -68,12 +75,39 @@
           </p>
           <div class="media-footer">#Sirus #Awakener of Worlds</div>
         </div>
-        <div class="media-card">
+        <div class="media-card" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url(https://i.ytimg.com/vi/XKK5WUEMfbE/hqdefault.jpg) no-repeat center/cover">
           <p
             style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
             I shall never doubt the power of innocent dreamers
           </p>
           <div class="media-footer">#Queen Nehellenia</div>
+        </div>
+        <div class="media-card"
+          style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url(https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/08/10/kalandracinematic4_feature.jpg) no-repeat center/cover">
+          <p
+            style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
+            One day you will fly
+          </p>
+          <div class="media-footer">#Kalandra</div>
+        </div>
+        <div class="media-card"
+          style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url(https://assetsio.gnwcdn.com/dynasty_warriors_9.jpg?width=1200&height=600&fit=crop&enable=upscale&auto=webp) no-repeat center/cover">
+          <p
+            style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
+            Wow! Somebody even lazier than I am
+          </p>
+          <div class="media-footer">#Ling Tong</div>
+        </div>
+        <div class="media-card" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url(https://www.arcadequartermaster.com/lb2/win_moriya.png) no-repeat center/cover">
+          <p
+            style="font-style: italic; color: white; margin: auto; padding: 15px; line-height: 1.6; text-align: center;font-family: 'Handlee', cursive;">
+            If I were you, I'd curse your incompetence!
+          </p>
+          <div class="media-footer">#Moriya Minakata #Last Blade</div>
         </div>
       </div>
       <!--Games-->
@@ -205,4 +239,3 @@
 </body>
 
 </html>
-
