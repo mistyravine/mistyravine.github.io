@@ -16,6 +16,8 @@ function openTab(evt, categoryName) {
   // 3. Hiện tab được chọn và thêm class "active" cho nút đó
   document.getElementById(categoryName).style.display = "block";
   evt.currentTarget.className += " active";
+
+  document.querySelector('.media-wrapper').scrollTop = 0;
 }
 var player;
 
@@ -80,4 +82,5 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener("load", () => {
   const loader = document.querySelector("#loader");
   loader.classList.add("loader-hidden");
+
 });
