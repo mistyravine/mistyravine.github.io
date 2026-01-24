@@ -19,7 +19,7 @@
 <body>
   <!--Màn hình load-->
   <div id="loader">
-    <video autoplay muted loop playsinline id="loader-video">
+    <video autoplay muted loop playsinline id="loader-video" poster="images/preloadposter.png">
       <source src="videos/Preload.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -34,9 +34,10 @@
     <p class="namewave" style="font-weight: bold; margin: 0; font-size: 13px;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
       𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </p>
     <!--Nhạc-->
-    <img src="https://i.pinimg.com/originals/7a/98/41/7a98413dbf3b22a08914cb78f4064a36.gif" onclick="playYT()"
-      style="cursor:pointer; width:50px;position:relative">
-    <div id="player" style="display:none"></div>
+    <audio id="localAudio" src="music/Sienna.mp3"></audio>
+    <button id="musicBtn" onclick="playMusic()">
+      <span id="btnIcon">▶</span> <span id="btnText">Play</span>
+    </button>
   </div>
   <!--Mưa-->
   <div class="rain" id="rainContainer"></div>
@@ -62,9 +63,8 @@
           <div class="media-footer">#Patty #Mapple Town</div>
         </div>
         <div class="media-card">
-          <div class="media-content"><img
-              src="https://i.pinimg.com/originals/71/56/b7/7156b706d1579012e5129296b3459403.gif" alt="images3"></div>
-          <div class="media-footer">#Minh Di</div>
+          <div class="media-content"><img src="https://i.ytimg.com/vi/rm8Ctdm3oNM/maxresdefault.jpg" alt="Marias"></div>
+          <div class="media-footer">#Maria</div>
         </div>
       </div>
       <!--Trích dẫn-->
@@ -118,8 +118,8 @@
       <div id="games" class="tab-content" style="display:none">
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/Z2sMGO38nAo?si=TBgbdCkEeZI07DEK" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/Z2sMGO38nAo?si=TBgbdCkEeZI07DEK"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -133,7 +133,7 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <video playsinline controls>
+            <video class="js-video" playsinline controls>
               <source src="videos/Lulingqi.mp4" type="video/mp4">
             </video>
           </div>
@@ -141,7 +141,7 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <video playsinline controls>
+            <video class="js-video" playsinline controls>
               <source src="videos/Xushu.mp4" type="video/mp4">
             </video>
           </div>
@@ -149,8 +149,8 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/CAL4WMpBNs0?si=et_7qCkLI2E7rwUs" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/CAL4WMpBNs0?si=et_7qCkLI2E7rwUs"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -161,8 +161,8 @@
       <div id="music" class="tab-content" style="display:none">
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/DSvksh6d21w?si=NAzfAq9Ly1srXkZn" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/DSvksh6d21w?si=NAzfAq9Ly1srXkZn"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -170,7 +170,7 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <video playsinline controls>
+            <video class="js-video" playsinline controls>
               <source src="videos/I don't wanna live without your love.mp4" type="video/mp4">
             </video>
           </div>
@@ -178,8 +178,8 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/ZUDBd-md0VE?si=Qur5vujCuHVMkXMN" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/ZUDBd-md0VE?si=Qur5vujCuHVMkXMN"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -187,8 +187,8 @@
         </div>
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/tbIIf6CeXa4?si=2NIbAZRDwflkh-WU" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/tbIIf6CeXa4?si=2NIbAZRDwflkh-WU"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -199,8 +199,8 @@
       <div id="videos" class="tab-content" style="display:none">
         <div class="media-card">
           <div class="media-content">
-            <iframe src="https://www.youtube.com/embed/vZO6Q0RfzS4?si=3aCR7oh17ohKMKxo" title="YouTube video player"
-              frameborder="0"
+            <iframe class="js-video" src="https://www.youtube.com/embed/vZO6Q0RfzS4?si=3aCR7oh17ohKMKxo"
+              title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
