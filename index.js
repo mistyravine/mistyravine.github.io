@@ -1,5 +1,6 @@
 
 function openTab(evt, categoryName) {
+  pauseAllMedia();
   // 1. Ẩn tất cả các tab-content
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tab-content");
@@ -19,33 +20,24 @@ function openTab(evt, categoryName) {
 
   document.querySelector('.media-wrapper').scrollTop = 0;
 }
-var player;
+function playMusic() {
+  // Lấy element ngay tại thời điểm nhấn nút
+  var audio = document.getElementById("localAudio");
+  var btnIcon = document.getElementById("btnIcon");
+  var btnText = document.getElementById("btnText");
 
-// Load YouTube API
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  audio.volume = 0.6;
 
-// Initialize the player
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '0',
-    width: '0',
-    videoId: 'pvb2zsYkpzA', // Replace with your YouTube ID
-  });
-}
+  if (!audio) return; // Phòng lỗi nếu không tìm thấy file audio
 
-// Function called by image click
-function playYT() {
-  if (player) {
-    var state = player.getPlayerState();
-    // If playing (1), then pause (2). Otherwise, play.
-    if (state == 1) {
-      player.pauseVideo();
-    } else {
-      player.playVideo();
-    }
+  if (audio.paused) {
+    audio.play();
+    btnIcon.innerHTML = "⏸";
+    btnText.innerHTML = "Pause";
+  } else {
+    audio.pause();
+    btnIcon.innerHTML = "▶";
+    btnText.innerHTML = "Play";
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,5 +74,33 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener("load", () => {
   const loader = document.querySelector("#loader");
   loader.classList.add("loader-hidden");
-
 });
+// Hàm dừng tất cả video và iframe
+function pauseAllMedia() {
+  // 1. Dừng tất cả video MP4 cục bộ
+  const allVideos = document.querySelectorAll('video.js-video');
+  allVideos.forEach(video => video.pause());
+
+  // 2. Dừng tất cả YouTube Iframes
+  const allIframes = document.querySelectorAll('iframe.js-video');
+  allIframes.forEach(iframe => {
+    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  });
+}
+
+// Lắng nghe sự kiện Play
+document.addEventListener('play', function (e) {
+  // Nếu một video MP4 cục bộ được bật, dừng các cái khác
+  if (e.target.tagName === 'VIDEO') {
+    const allVideos = document.querySelectorAll('video.js-video');
+    allVideos.forEach(video => {
+      if (video !== e.target) video.pause();
+    });
+
+    // Dừng luôn cả YouTube
+    const allIframes = document.querySelectorAll('iframe.js-video');
+    allIframes.forEach(iframe => {
+      iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    });
+  }
+}, true);
