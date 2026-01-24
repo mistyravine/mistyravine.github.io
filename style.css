@@ -18,6 +18,35 @@
     z-index: 1;
 }
 
+#musicBtn {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 9px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #6e8efb, #0d00ff);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+
+#musicBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#musicBtn:active {
+    transform: translateY(0);
+}
+
+.icon {
+    font-size: 1.2em;
+}
+
 .loading-text {
     position: relative;
     /* Chữ nằm trên ảnh */
