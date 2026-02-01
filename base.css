@@ -19,9 +19,9 @@ body {
     width: 850px;
     height: 420px;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     padding: 10px;
     gap: 10px;
