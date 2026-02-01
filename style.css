@@ -35,6 +35,7 @@
 }
 
 @keyframes pulse-text {
+
     0%,
     100% {
         opacity: 0.5;
@@ -106,7 +107,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     font-size: 12px;
-    position:absolute;
+    position: absolute;
     right: 5px;
     top: -30px;
 }
@@ -241,57 +242,79 @@
 /* ==================== TITLE STYLES SECTION ==================== */
 .title-neutral,
 .title-type4,
-.title-infj
-.title-assassin {
-  display: inline-block;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  margin: 4px;
+.title-infj .title-assassin {
+    display: inline-block;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    margin: 4px;
 }
+
 .title-glitch {
-  background: #222;
-  color: #ff0033;
-  padding: 4px 10px;
-  border: 1px solid #ff0033;
-  text-transform: uppercase;
-  animation: glitch 0.4s steps(2) infinite;
-  font-size: 9px;
+    background: #222;
+    color: #ff0033;
+    padding: 4px 10px;
+    border: 1px solid #ff0033;
+    text-transform: uppercase;
+    animation: glitch 0.4s steps(2) infinite;
+    font-size: 9px;
 }
 
 @keyframes glitch {
-  0% { transform: translate(0); text-shadow: -2px 0 red, 2px 0 blue; }
-  50% { transform: translate(-1px, 1px); text-shadow: 2px 0 red, -2px 0 blue; }
-  100% { transform: translate(0); }
+    0% {
+        transform: translate(0);
+        text-shadow: -2px 0 red, 2px 0 blue;
+    }
+
+    50% {
+        transform: translate(-1px, 1px);
+        text-shadow: 2px 0 red, -2px 0 blue;
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
+
 .title-neutral {
-  background: linear-gradient(90deg, #8e9eab, #eef2f3, #8e9eab);
-  background-size: 200% auto;
-  color: #555;
-  border: 1px solid #ccc;
-  padding: 4px 8px;
-  border-radius: 10px;
-  animation: slow-drift 5s linear infinite;
-  font-size: 9px;
-  font-style: bold;
+    background: linear-gradient(90deg, #8e9eab, #eef2f3, #8e9eab);
+    background-size: 200% auto;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 10px;
+    animation: slow-drift 5s linear infinite;
+    font-size: 9px;
+    font-style: bold;
 }
 
 @keyframes slow-drift {
-  to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 .title-type4 {
-  background: #4a0e0e;
-  color: #fff700;
-  padding: 4px 12px;
-  font-style: italic;
-  border-bottom: 2px solid #d4af37;
-  animation: breathe 4s ease-in-out infinite;
-  font-size: 9px;
+    background: #4a0e0e;
+    color: #fff700;
+    padding: 4px 12px;
+    font-style: italic;
+    border-bottom: 2px solid #d4af37;
+    animation: breathe 4s ease-in-out infinite;
+    font-size: 9px;
 }
 
 @keyframes breathe {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.02); }
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
 }
 
 /* Container to stack layers */
@@ -306,38 +329,45 @@
     font-size: 11px;
     text-transform: uppercase;
 }
+
 /* Layer 1: The Animated Wave (Gradient) */
 .layer1.nameWave {
     position: absolute;
     inset: 0;
     z-index: 2;
-    background-image: repeating-linear-gradient(-45deg, 
-        #fff 3%, 
-        #36ff97 26.5%, 
-        #fff 50%
-    );
+    background-image: repeating-linear-gradient(-45deg,
+            #f6ff00 3%,
+            #36ff97 26.5%,
+            #ffdb0d 50%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: wave 4s linear infinite;
 }
+
 /* Layer 2: The Neon Glow (Static) */
 .layer2 {
     position: relative;
     z-index: 1;
     color: #fff;
-    text-shadow: 
-        #2fff00 0px 0px 0.2rem, 
-        #2fff00 0px 0px 0.2rem, 
+    text-shadow:
+        #2fff00 0px 0px 0.2rem,
+        #2fff00 0px 0px 0.2rem,
         #2fff00 0px 0px 0.2rem;
 }
 
 /* Keyframes for the movement */
 @keyframes wave {
-    from { background-position: 0% center; }
-    to { background-position: 200% center; }
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: 200% center;
+    }
 }
+
 /* ==================== MEDIA CARD SECTION ==================== */
 .media-card {
     background: #000;
@@ -432,7 +462,7 @@
     border-radius: 0 12px 12px 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     width: 250px;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
