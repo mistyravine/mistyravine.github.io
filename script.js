@@ -38,6 +38,7 @@ const galleryData = {
         { type: "youtube", src: "https://www.youtube.com/embed/tbIIf6CeXa4", tag: "#Rain Stop" }
     ],
     videos: [
+        { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
         { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" }
     ]
 };
@@ -65,4 +66,5 @@ function renderAllSections() {
     });
 }
 // Call this once the DOM is ready
+
 document.addEventListener('DOMContentLoaded', renderAllSections);
