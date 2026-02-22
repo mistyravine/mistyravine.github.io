@@ -75,9 +75,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const images = [
     'images/loader/Shaper.jpg',
     'images/loader/Frill.jpg',
-    'https://i.pinimg.com/1200x/4f/bc/c4/4fbcc476f8d0a132b36169542203bde0.jpg',
-    'https://i.pinimg.com/1200x/ad/a9/1a/ada91ae3b7ee2205e40d4b118d21c5fe.jpg',
-    'https://i.pinimg.com/1200x/a8/0e/7e/a80e7e90f8101eb2ae3c6f1e72afe2e9.jpg'
   ];
 
   const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -135,4 +132,5 @@ document.addEventListener('DOMContentLoaded', () => {
             this.innerText = bar.classList.contains('collapsed') ? '▶' : '◀';
         };
     }
+
 });
