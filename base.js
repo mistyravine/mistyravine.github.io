@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
   const images = [
     'images/loader/Shaper.jpg',
-    'images/loader/Frill.jpg',
+    'images/loader/Frill.jpg'
   ];
 
   const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -134,3 +134,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
