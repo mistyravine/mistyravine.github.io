@@ -30,7 +30,7 @@ const galleryData = {
         { type: "video", src: "videos/Lulingqi.mp4", tag: "#Dynasty Warriors" },
         { type: "video", src: "videos/Xushu.mp4", tag: "#Dynasty Warriors" },
         { type: "youtube", src: "https://www.youtube.com/embed/CAL4WMpBNs0", tag: "#Doki Doki" },
-        { type: "img", src: "http://www.game-art-hq.com/wp-content/uploads/2016/05/Guilty-Gear-Xrd-Sign-Sol-Badguy-Wallpaper.jpg", tag: "GG" }
+        { type: "img", src: "https://catwithmonocle.com/wp-content/uploads/2021/06/ggs-artwork-01-1920x1080-1.jpg", tag: "GG" }
     ],
     music: [
         { type: "youtube", src: "https://www.youtube.com/embed/DSvksh6d21w", tag: "#Sacred Play" },
@@ -69,4 +69,5 @@ function renderAllSections() {
 // Call this once the DOM is ready
 
 document.addEventListener('DOMContentLoaded', renderAllSections);
+
 
