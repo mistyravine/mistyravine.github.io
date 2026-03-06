@@ -29,7 +29,8 @@ const galleryData = {
         { type: "img", src: "https://assets-prd.ignimgs.com/2024/04/08/persona-1712577088693.png", tag: "#Persona" },
         { type: "video", src: "videos/Lulingqi.mp4", tag: "#Dynasty Warriors" },
         { type: "video", src: "videos/Xushu.mp4", tag: "#Dynasty Warriors" },
-        { type: "youtube", src: "https://www.youtube.com/embed/CAL4WMpBNs0", tag: "#Doki Doki" }
+        { type: "youtube", src: "https://www.youtube.com/embed/CAL4WMpBNs0", tag: "#Doki Doki" },
+        { type: "img", src: "http://www.game-art-hq.com/wp-content/uploads/2016/05/Guilty-Gear-Xrd-Sign-Sol-Badguy-Wallpaper.jpg", tag: "GG" }
     ],
     music: [
         { type: "youtube", src: "https://www.youtube.com/embed/DSvksh6d21w", tag: "#Sacred Play" },
@@ -68,3 +69,4 @@ function renderAllSections() {
 // Call this once the DOM is ready
 
 document.addEventListener('DOMContentLoaded', renderAllSections);
+
