@@ -31,7 +31,7 @@ const galleryData = {
         { type: "video", src: "videos/Lulingqi.mp4", tag: "#Dynasty Warriors" },
         { type: "video", src: "videos/Xushu.mp4", tag: "#Dynasty Warriors" },
         { type: "youtube", src: "https://www.youtube.com/embed/CAL4WMpBNs0", tag: "#Doki Doki" },
-        { type: "img", src: "https://catwithmonocle.com/wp-content/uploads/2021/06/ggs-artwork-01-1920x1080-1.jpg", tag: "GG" }
+        { type: "youtube", src: "https://www.youtube.com/embed/2GcKrCnDBf4?si=EgZfFpZXqaKUTQCi", tag: "#GGStrive" }
     ],
     music: [
         { type: "youtube", src: "https://www.youtube.com/embed/DSvksh6d21w", tag: "#Sacred Play" },
