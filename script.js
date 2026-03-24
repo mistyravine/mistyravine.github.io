@@ -25,6 +25,7 @@ const galleryData = {
         { src: "https://i.ytimg.com/vi/rm8Ctdm3oNM/maxresdefault.jpg", tag: "#Maria" }
     ],
     games: [
+        { type: "youtube", src: "www.youtube.com/embed/5v025kIQBhY?si=6TfUW8UHUkxvQwSC", tag: "#P4" },
         { type: "youtube", src: "https://www.youtube.com/embed/Z2sMGO38nAo", tag: "#Cookie Run" },
         { type: "img", src: "https://assets-prd.ignimgs.com/2024/04/08/persona-1712577088693.png", tag: "#Persona" },
         { type: "video", src: "videos/Lulingqi.mp4", tag: "#Dynasty Warriors" },
