@@ -25,13 +25,13 @@ const galleryData = {
         { src: "https://i.ytimg.com/vi/rm8Ctdm3oNM/maxresdefault.jpg", tag: "#Maria" }
     ],
     games: [
-        { type: "youtube", src: "www.youtube.com/embed/5v025kIQBhY?si=6TfUW8UHUkxvQwSC", tag: "#P4" },
+        { type: "youtube", src: "https://www.youtube.com/embed/5v025kIQBhY", tag: "#P4" },
         { type: "youtube", src: "https://www.youtube.com/embed/Z2sMGO38nAo", tag: "#Cookie Run" },
         { type: "img", src: "https://assets-prd.ignimgs.com/2024/04/08/persona-1712577088693.png", tag: "#Persona" },
         { type: "video", src: "videos/Lulingqi.mp4", tag: "#Dynasty Warriors" },
         { type: "video", src: "videos/Xushu.mp4", tag: "#Dynasty Warriors" },
         { type: "youtube", src: "https://www.youtube.com/embed/CAL4WMpBNs0", tag: "#Doki Doki" },
-        { type: "youtube", src: "https://www.youtube.com/embed/2GcKrCnDBf4?si=EgZfFpZXqaKUTQCi", tag: "#GGStrive" }
+        { type: "youtube", src: "https://www.youtube.com/embed/2GcKrCnDBf4", tag: "#GGStrive" }
     ],
     music: [
         { type: "youtube", src: "https://www.youtube.com/embed/DSvksh6d21w", tag: "#Sacred Play" },
