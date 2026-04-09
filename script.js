@@ -37,7 +37,8 @@ const galleryData = {
         { type: "youtube", src: "https://www.youtube.com/embed/DSvksh6d21w", tag: "#Sacred Play" },
         { type: "video", src: "videos/I don't wanna live without your love.mp4", tag: "#I don't wanna live" },
         { type: "youtube", src: "https://www.youtube.com/embed/ZUDBd-md0VE", tag: "#Sienna" },
-        { type: "youtube", src: "https://www.youtube.com/embed/tbIIf6CeXa4", tag: "#Rain Stop" }
+        { type: "youtube", src: "https://www.youtube.com/embed/tbIIf6CeXa4", tag: "#Some day this rain will stop" },
+        { type: "youtube", src: "https://www.youtube.com/embed/XLwM3ZEHLJ0", tag: "#Partner" }
     ],
     videos: [
         { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
