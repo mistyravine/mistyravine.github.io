@@ -15,9 +15,6 @@ function loadQuotes() {
   </div>
 `).join('');
 }
-
-// Call this when the page loads
-window.onload = loadQuotes;
 const galleryData = {
     images: [
         { src: "images/Celeste.gif", tag: "#Celeste" },
@@ -43,6 +40,13 @@ const galleryData = {
     videos: [
         { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
         { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" }
+    ],
+    personal: [
+        {
+            title: "I Choose Myself",
+            content: `I'll think about what to write here soon`,
+            footer: "Cập nhật lần cuối: 2026-06-29"
+        }
     ]
 };
 function renderAllSections() {
@@ -51,6 +55,17 @@ function renderAllSections() {
         if (!container) return;
 
         container.innerHTML = galleryData[sectionId].map(item => {
+            // Xử lý riêng cho tab 'personal'
+            if (sectionId === 'personal') {
+                return `
+                <article class="personal-article">
+                    <h2 class="article-heading">${item.title || "About Me"}</h2>
+                    <div class="article-content">${item.content || ""}</div>
+                    <footer class="article-footer">${item.footer || ""}</footer>
+                </article>`;
+            }
+
+            // Logic cũ cho các tab media (images, games, music, videos)
             let content = '';
             if (item.type === 'youtube') {
                 content = `<iframe class="js-video" src="${item.src}" frameborder="0" allowfullscreen></iframe>`;
@@ -61,15 +76,16 @@ function renderAllSections() {
             }
 
             return `
-        <div class="media-card">
-          <div class="media-content">${content}</div>
-          <div class="media-footer">${item.tag}</div>
-        </div>`;
+            <div class="media-card">
+              <div class="media-content">${content}</div>
+              <div class="media-footer">${item.tag}</div>
+            </div>`;
         }).join('');
     });
 }
-// Call this once the DOM is ready
-
-document.addEventListener('DOMContentLoaded', renderAllSections);
+document.addEventListener('DOMContentLoaded', () => {
+    loadQuotes();         // Render trích dẫn
+    renderAllSections();  // Render tất cả các tab còn lại (images, games, music, videos, personal)
+});
 
 
