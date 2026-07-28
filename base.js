@@ -123,15 +123,32 @@ document.addEventListener('play', function (e) {
   }
 }, true);
 document.addEventListener('DOMContentLoaded', () => {
-    const bar = document.getElementById('status-bar');
-    const btn = document.getElementById('toggle-btn');
+  const bar = document.getElementById('status-bar');
+  const btn = document.getElementById('toggle-btn');
 
-    if (btn && bar) { // Kiểm tra xem phần tử có tồn tại không
-        btn.onclick = function() {
-            bar.classList.toggle('collapsed');
-            this.innerText = bar.classList.contains('collapsed') ? '▶' : '◀';
-        };
-    }
+  if (btn && bar) { // Kiểm tra xem phần tử có tồn tại không
+    btn.onclick = function () {
+      bar.classList.toggle('collapsed');
+      this.innerText = bar.classList.contains('collapsed') ? '▶' : '◀';
+    };
+  }
 
 });
 
+window.difyChatbotConfig = {
+  token: 'pgcinwP29itISvIM',
+  inputs: {
+    // You can define the inputs from the Start node here
+    // key is the variable name
+    // e.g.
+    // name: "NAME"
+  },
+  systemVariables: {
+    // user_id: 'YOU CAN DEFINE USER ID HERE',
+    // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+  },
+  userVariables: {
+    // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+    // name: 'YOU CAN DEFINE USER NAME HERE',
+  },
+}
