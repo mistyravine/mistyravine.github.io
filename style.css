@@ -240,7 +240,7 @@
 
 
 /* ==================== TITLE STYLES SECTION ==================== */
-.title-neutral,
+.title-chaotic-neutral,
 .title-type4,
 .title-infj .title-assassin {
     display: inline-block;
@@ -275,21 +275,32 @@
     }
 }
 
-.title-neutral {
-    background: linear-gradient(90deg, #8e9eab, #eef2f3, #8e9eab);
-    background-size: 200% auto;
-    color: #555;
-    border: 1px solid #ccc;
+.title-chaotic-neutral {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #ff00ff;
+    /* A touch of neon chaos */
     padding: 4px 8px;
-    border-radius: 10px;
-    animation: slow-drift 5s linear infinite;
+    border-radius: 4px;
     font-size: 9px;
-    font-style: bold;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* The spice: subtle color glitching */
+    animation: chaotic-glitch 2s infinite alternate;
 }
 
-@keyframes slow-drift {
-    to {
-        background-position: 200% center;
+@keyframes chaotic-glitch {
+    0% {
+        text-shadow: -1px 0 #00ffff;
+    }
+
+    50% {
+        text-shadow: 1px 0 #ff00ff;
+    }
+
+    100% {
+        text-shadow: -1px 0 #00ffff;
     }
 }
 
@@ -447,6 +458,34 @@
     animation: fadeIn 0.5s;
 }
 
+.personal-article {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    color: #eee;
+    border: 1px solid #333;
+}
+
+.article-heading {
+    border-bottom: 2px solid #8cb4ff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.article-content {
+    line-height: 1.6;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.article-footer {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: right;
+    border-top: 1px solid #222;
+    padding-top: 10px;
+}
 
 /* ==================== STATUS BAR SECTION ==================== */
 .status-bar {
@@ -496,6 +535,14 @@
     font-size: 18px;
 }
 
+#dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+}
+
+#dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+}
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 768px) {
