@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- [SỬA] meta charset đưa lên đầu head; viewport thêm viewport-fit=cover cho điện thoại có tai thỏ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Hiraeth</title>
+
+  <!-- [SỬA] Đã xóa ký tự ` thừa sau <link style.css> (nó bị trình duyệt đẩy ra body và hiện thành 1 dấu chấm đen) -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Kết nối sớm tới nguồn font + ảnh nền -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://d235zo2kjgm9jl.cloudfront.net">
+
+  <!-- [SỬA] Font: bỏ Caveat (không có chỗ nào dùng). Nạp không chặn render (media=print -> all) -->
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Handlee&family=Playwrite+AU+TAS:wght@100..400&display=swap">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Handlee&family=Playwrite+AU+TAS:wght@100..400&display=swap">
+    <style>#loader { display: none; }</style>
+  </noscript>
+
+  <link rel="icon" type="image/gif" href="https://i.ibb.co/prxLSCn4/ezgif-806d1d2ee61b81.gif">
+
+  <!-- [SỬA] defer: script không còn chặn việc dựng trang. Thứ tự giữ nguyên: base.js -> script.js -->
+  <script src="base.js" defer></script>
+  <script src="script.js" defer></script>
+  <!-- [SỬA] udify.app/embed.min.js (Dify chatbot) không còn nằm ở đây: base.js sẽ nạp sau khi trang load xong -->
+  <!-- [BỎ] <link rel="preload" href="videos/Preload.mp4"> : file này không được dùng ở bất kỳ đâu nhưng vẫn bị tải -->
+</head>
+
+<body>
+  <!--Màn hình load-->
+  <div id="loader">
+    <!-- [SỬA] bỏ src="" (src rỗng); ảnh được chọn ngẫu nhiên trong base.js -->
+    <img id="loader-bg" alt="" decoding="async">
+    <h1 class="loading-text" style="font-family: 'Playwrite AU TAS', cursive;">Stay a while...</h1>
+  </div>
+  <!--Overlay-->
+  <!-- [SỬA] video chỉ bắt đầu tải sau khi trang load xong (base.js đọc data-src); thêm preload="none" -->
+  <video class="video-overlay" data-src="videos/overlay.mp4" muted loop playsinline preload="none" aria-hidden="true"
+    tabindex="-1" disablepictureinpicture></video>
+  <!--Chạy chữ-->
+  <!-- [SỬA] style inline chuyển sang class .top-quote-colors / .top-quote trong style.css (để chỉnh theo từng màn hình) -->
+  <div class="name-container top-quote-colors" translate="no">
+    <div class="layer1 top-quote nameWave" aria-hidden="true">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+    <div class="layer2 top-quote">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+  </div>
+  <!--Mưa-->
+  <div class="rain" id="rainContainer" aria-hidden="true"></div>
+  <!--Thanh trạng thái-->
+  <div id="status-bar" class="status-bar">
+    <div class="content">
+      <span class="icon">🪽</span>
+      <span class="text">I Am the Antichrist to You</span>
+    </div>
+    <button id="toggle-btn" type="button" aria-label="Toggle status bar" aria-expanded="true">◀</button>
+  </div>
+  <!-- [MỚI] Nút chuyển chế độ hiệu ứng Light / Full (xem base.js, mục CHẾ ĐỘ HIỆU ỨNG) -->
+  <button id="fxBtn" type="button" aria-pressed="false">✨ FX: <span id="fxLabel">Light</span></button>
+  <div class="glass-container"> <!--Kính container-->
+    <div class="sidebar" role="tablist" aria-label="Sections"> <!--Sidebar nút nhấn-->
+      <button class="nav-btn active" data-tab="images" role="tab" aria-selected="true"
+        onclick="openTab(event, 'images')">Images</button>
+      <button class="nav-btn" data-tab="quotes" role="tab" aria-selected="false"
+        onclick="openTab(event, 'quotes')">Quotes</button>
+      <button class="nav-btn" data-tab="games" role="tab" aria-selected="false"
+        onclick="openTab(event, 'games')">Games</button>
+      <button class="nav-btn" data-tab="music" role="tab" aria-selected="false"
+        onclick="openTab(event, 'music')">Music</button>
+      <button class="nav-btn" data-tab="videos" role="tab" aria-selected="false"
+        onclick="openTab(event, 'videos')">Videos</button>
+      <button class="nav-btn" data-tab="personal" role="tab" aria-selected="false"
+        onclick="openTab(event, 'personal')">Personal</button>
+    </div>
+    <!--Nhạc-->
+    <!-- [SỬA] preload="none": chỉ tải nhạc khi bấm Play -->
+    <audio id="localAudio" src="music/Freesia.mp3" preload="none"></audio>
+    <button id="musicBtn" type="button" onclick="playMusic()">
+      <span id="btnIcon">▶</span> <span id="btnText">Play</span>
+    </button>
+    <div class="media-wrapper"> <!--Ti vi-->
+      <!-- [SỬA] Nội dung các tab được dựng khi mở tab lần đầu (script.js), không dựng hết ngay từ đầu -->
+      <!--Hình-->
+      <div id="images" class="tab-content" role="tabpanel">
+      </div>
+      <!--Trích dẫn-->
+      <div id="quotes" class="tab-content" role="tabpanel" style="display:none">
+      </div>
+      <!--Games-->
+      <div id="games" class="tab-content" role="tabpanel" style="display:none">
+      </div>
+      <!--Music-->
+      <div id="music" class="tab-content" role="tabpanel" style="display:none">
+      </div>
+      <!--Videos-->
+      <div id="videos" class="tab-content" role="tabpanel" style="display:none">
+      </div>
+      <!--Personal-->
+      <div id="personal" class="tab-content" role="tabpanel" style="display:none">
+      </div>
+    </div>
+    <!--Khung profile-->
+    <div class="profile-section">
+      <div class="profile-box main-bio">
+        <div class="name-row">
+          <div class="avatar">
+            <!-- [SỬA] Avatar hiển thị 70px nhưng ảnh gốc 1200px: thử bản 236x trước, lỗi thì tự quay về ảnh 1200x cũ -->
+            <img src="https://i.pinimg.com/236x/86/80/64/868064318f8e6adfa6c13d25abc10967.jpg" alt="Avatar" width="70"
+              height="70" decoding="async"
+              onerror="this.onerror=null;this.src='https://i.pinimg.com/1200x/86/80/64/868064318f8e6adfa6c13d25abc10967.jpg'">
+          </div> <br>
+          <p class="username">Rayne</p>
+          <img src="https://i.ibb.co/jZwhPc58/ezgif-77ec59d7c3b130.gif" alt="ezgif-77ec59d7c3b130" border="0"
+            style="width:50px;height:50px" decoding="async">
+        </div>
+        <span class="title-chaotic-neutral">Chaotic Neutral</span>
+        <span class="title-glitch">envy</span>
+        <div class="name-container">
+          <div class="layer1 title-infj nameWave" aria-hidden="true">INFJ-T</div>
+          <div class="layer2 title-infj">INFJ-T</div>
+        </div>
+        <span class="title-type4">The Romantic Individualist, Type 4</span>
+        <p class="bio-text">
+          Wings that can’t fly still have a purpose, because no matter what happens they still hold the memories of
+          being able to fly
+        </p>
+      </div>
+      <!--Contact Info Box-->
+      <div class="profile-box contact-info">
+        <div class="mini-avatar">
+          <img src="images/joker.jpg" alt="Mini" width="45" height="45" decoding="async">
+        </div>
+        <div class="info-text">
+          <strong>Hoang Kha (1212)</strong>
+          <span style="color: #8cb4ff;">• Coded by me</span>
+          <span style="color: #8cb4ff;">• Message if needed</span>
+          <span style="color: #8cb4ff;">• <a href="mailto:mistyravine1212@gmail.com" class="email-link">Email</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- [SỬA] thêm class + lazy/async; xóa thẻ </div> thừa ngay sau ảnh này -->
+  <img class="tesse" src="images/tesse.gif" alt="Tesse" loading="lazy" decoding="async">
+</body>
+
+</html>
