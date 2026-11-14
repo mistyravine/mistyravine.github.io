@@ -1421,3 +1421,12 @@ body {
     min-height: 32px
   }
 }
+@media (min-width: 876px) {
+    .tesse-image {
+        position: fixed;
+        bottom: 6%;
+        width: 150px;
+        height: auto;
+        z-index: 100;
+    }
+}
