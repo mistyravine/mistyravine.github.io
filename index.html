@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Handlee&family=Playwrite+AU+TAS:wght@100..400&display=swap"
+    rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiraeth</title>
+
+  <script src="script.js" defer></script>
+
+  <script src="seasonal.js" defer></script>
+
+  <link rel="stylesheet" href="seasonal.css">
+  <script src="https://udify.app/embed.min.js" id="pgcinwP29itISvIM" defer></script>
+  <link rel="icon" type="image/gif" href="https://i.ibb.co/prxLSCn4/ezgif-806d1d2ee61b81.gif">
+
+</head>
+
+<body>
+  <!--Màn hình load-->
+  <div id="loader">
+    <img id="loader-bg" src="" alt="Loading Background">
+    <h1 class="loading-text" style="font-family: 'Playwrite AU TAS', cursive;">Stay a while...</h1>
+  </div>
+<!--Chạy chữ-->
+  <div class="name-container top-quote-colors" translate="no"
+    style="font-size:14px;position:absolute; top:3%; left:50%; transform:translate(-50%, -50%); text-align:center; margin:auto">
+    <div class="layer1 top-quote nameWave" style="background-image: repeating-linear-gradient(-45deg, 
+        #fff 3%, 
+        #00ffff 26.5%, 
+        #fff 50%
+    );">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+    <div class="layer2 top-quote" style="text-shadow: 
+        #002fff 0px 0px 0.2rem, 
+        #0040ff 0px 0px 0.2rem, 
+        #0088ff 0px 0px 0.2rem;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+  </div>
+  <!--Mưa-->
+  <div class="rain" id="rainContainer" aria-hidden="true"></div>
+  <div id="seasonal-particles" class="seasonal-particles" aria-hidden="true"></div>
+  <!-- Desktop-only ambient HUD: outside the original 850x420 layout -->
+  <aside class="desktop-decoration hud-top" aria-label="Hiraeth ambient status">
+    <div class="hud-eyebrow"><span class="hud-dot"></span> HIRAETH </div>
+    <div class="hud-subtitle">Somewhere between dreams and reality.</div>
+  </aside>
+  <aside class="desktop-decoration hud-clock" aria-label="Local clock">
+    <div class="hud-eyebrow">LOCAL TIME <span class="hud-dot"></span></div>
+    <time id="ambient-clock" class="clock-digits">--:--</time>
+    <div id="ambient-date" class="hud-subtitle">—</div>
+    <div id="hiraeth-weather" class="hud-weather" role="status" aria-live="polite">☁️ Phú Quốc · --°C</div>
+    <div id="hiraeth-event" class="hud-event" hidden></div>
+  </aside>
+
+  <div class="desktop-decoration hud-bottom-mark" aria-hidden="true">EST. 2026 <span>//</span> RAYNE<br><small>MEMORIES IN MOTION</small></div>
+  <div class="desktop-decoration hud-corner hud-corner-left" aria-hidden="true"></div>
+  <div class="desktop-decoration hud-corner hud-corner-right" aria-hidden="true"></div>
+  <div class="personalization-controls" aria-label="Customize atmosphere">
+    <div class="picker-wrap"><button class="picker-toggle" id="mood-toggle" type="button" aria-expanded="false" aria-controls="mood-options">✦ Mood <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="mood-options" hidden><button type="button" data-mood="auto">✦ Auto Seasonal</button><button type="button" data-mood="dream">Dreaming</button><button type="button" data-mood="dusk">Melancholy</button><button type="button" data-mood="serene">Serenity</button></div></div>
+    <div class="picker-wrap"><button class="picker-toggle" id="background-toggle" type="button" aria-expanded="false" aria-controls="background-options">▧ Background <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="background-options" hidden></div></div>
+  </div>
+  <div class="glass-container"> <!--Kính container-->
+    <div class="sidebar"> <!--Sidebar nút nhấn-->
+      <button class="nav-btn active" onclick="openTab(event, 'images')">Images</button>
+      <button class="nav-btn" onclick="openTab(event, 'quotes')">Quotes</button>
+      <button class="nav-btn" onclick="openTab(event, 'games')">Games</button>
+      <button class="nav-btn" onclick="openTab(event, 'music')">Music</button>
+      <button class="nav-btn" onclick="openTab(event, 'videos')">Videos</button>
+      <button class="nav-btn" onclick="openTab(event, 'personal')">Vault</button>
+    </div>
+    <!--Nhạc-->
+    <audio id="localAudio" preload="none" src="music/Freesia.mp3"></audio>
+    <div class="media-column">
+    <div class="media-wrapper"> <!-- Ti vi -->
+      <!--Hình-->
+      <div id="images" class="tab-content">
+      </div>
+      <!--Trích dẫn-->
+      <div id="quotes" class="tab-content" style="display:none">
+      </div>
+      <!--Games-->
+      <div id="games" class="tab-content" style="display:none">
+      </div>
+      <!--Music-->
+      <div id="music" class="tab-content" style="display:none">
+      </div>
+      <!--Videos-->
+      <div id="videos" class="tab-content" style="display:none">
+      </div>
+      <!--Vault-->
+      <div id="personal" class="tab-content" style="display:none">
+      </div>
+    </div>
+<div class="media-extra">
+    <img src="images/banner.webp" alt="Media banner">
+</div>
+    </div>
+    <!--Khung profile-->
+    <div class="profile-section">
+      <div class="profile-box main-bio">
+        <div class="name-row">
+          <div class="avatar">
+            <img src="https://i.pinimg.com/1200x/86/80/64/868064318f8e6adfa6c13d25abc10967.jpg" alt="Avatar" decoding="async">
+          </div> <br>
+          <p class="username">Rayne</p>
+          <img src="https://i.ibb.co/jZwhPc58/ezgif-77ec59d7c3b130.gif" alt="ezgif-77ec59d7c3b130" border="0"
+            style="width:50px;height:50px">
+        </div>
+        <span class="title-chaotic-neutral">Chaotic Neutral</span>
+        <span class="title-glitch">corrupted</span>
+        <div class="name-container">
+          <div class="layer1 title-infj nameWave">INFJ-T</div>
+          <div class="layer2 title-infj">INFJ-T</div>
+        </div>
+        <span class="title-type4">The Romantic Individualist, Type 4</span>
+        <p class="bio-text">
+          Wings that can’t fly still have a purpose, because no matter what happens they still hold the memories of
+          being able to fly
+        </p>
+      </div>
+      <!--Contact Info Box-->
+      <div class="profile-box contact-info">
+        <div class="mini-avatar">
+          <img src="images/joker.jpg" alt="Mini" loading="lazy" decoding="async">
+        </div>
+        <div class="info-text">
+          <strong>Hoang Kha (1212)</strong>
+          <span style="color: #8cb4ff;">• Coded by me</span>
+          <span style="color: #8cb4ff;">• Message if needed</span>
+          <span style="color: #8cb4ff;">• <a href="mailto:mistyravine1212@gmail.com" class="email-link">Email</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-companions">
+  <aside class="hud-now-playing" aria-label="Music status">
+    <div class="hud-eyebrow">♫ NOW PLAYING <span id="ambient-audio-state">// PAUSED</span></div>
+    <div class="hud-track-row"><div class="hud-track-select"><span class="hud-track" id="hud-track-name">Freesia</span><button type="button" id="track-toggle" class="track-toggle" aria-expanded="false" aria-controls="track-options" aria-label="Choose music"><span class="track-chevron" aria-hidden="true"></span></button><div class="track-menu" id="track-options" hidden></div></div><button id="hud-play-btn" type="button" aria-label="Play Freesia" aria-pressed="false">▶</button></div>
+    <div class="hud-progress" aria-hidden="true"><span id="ambient-progress"></span></div>
+    <div id="ambient-audio-time" class="hud-subtitle">00:00 / --:--</div>
+  </aside>
+    <img class="tesse-image" src="images/tesse.gif" alt="Tesse" loading="lazy" decoding="async">
+  </div>
+  </div>
+  <div id="image-lightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true" hidden>
+    <button type="button" class="lightbox-close" aria-label="Close image viewer">×</button>
+    <button type="button" class="lightbox-prev" aria-label="Previous image">‹</button>
+    <figure><img id="lightbox-image" alt=""><figcaption id="lightbox-caption"></figcaption></figure>
+    <button type="button" class="lightbox-next" aria-label="Next image">›</button>
+  </div>
+</body>
+
+</html>
