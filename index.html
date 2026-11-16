@@ -21,6 +21,48 @@
   <script src="https://udify.app/embed.min.js" id="pgcinwP29itISvIM" defer></script>
   <link rel="icon" type="image/gif" href="https://i.ibb.co/prxLSCn4/ezgif-806d1d2ee61b81.gif">
 
+<style>
+/* Project directory shares the current atmosphere palette. */
+.project-toggle { margin-left: 18px; }
+.project-dialog { box-sizing: border-box; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 28px; border: 1px solid var(--mood-line, #69dfff); border-radius: 20px; background: var(--mood-glass, #091222); color: var(--mood-soft, #e4f7ff); box-shadow: 0 24px 90px #0009; backdrop-filter: blur(24px); font-family: system-ui, sans-serif; }
+.project-dialog::backdrop { background: rgba(2, 5, 12, .78); backdrop-filter: blur(8px); }
+.project-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.project-eyebrow { margin: 0 0 10px; font-size: 9px; letter-spacing: 2px; color: var(--mood-accent, #69dfff); }
+.project-dialog h2 { margin: 0; font: italic 32px Georgia, serif; }
+.project-close { flex: none; width: 36px; height: 36px; border: 1px solid var(--mood-line, #69dfff); border-radius: 10px; color: inherit; background: transparent; font-size: 24px; cursor: pointer; }
+.project-close:focus-visible { outline: 2px solid var(--mood-accent, #69dfff); outline-offset: 3px; }
+.project-intro { color: var(--mood-muted, #b4c5d8); font-size: 13px; line-height: 1.6; margin: 16px 0 24px; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.project-card { padding: 22px; border: 1px solid var(--mood-line, #69dfff); border-radius: 14px; background: linear-gradient(145deg, #ffffff08, #ffffff02); }
+.project-symbol { display: block; font-size: 28px; color: var(--mood-accent, #69dfff); margin-bottom: 22px; }
+.project-card h3 { margin: 0 0 10px; font: 24px Georgia, serif; }
+.project-card p { margin: 0 0 24px; min-height: 44px; color: var(--mood-muted, #b4c5d8); font-size: 12px; line-height: 1.8; }
+.project-status { display: inline-block; border: 1px solid var(--mood-line, #69dfff); border-radius: 99px; padding: 6px 10px; font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mood-accent, #69dfff); }
+@media (max-width: 875px) { .personalization-controls { flex-wrap: wrap; } .project-toggle { margin-left: 12px; } }
+@media (max-width: 480px) { .project-dialog { padding: 22px; } .project-grid { grid-template-columns: 1fr; } .project-card { padding: 18px; } .project-symbol { margin-bottom: 12px; } .project-card p { min-height: 0; margin-bottom: 16px; } .project-toggle { margin-left: 4px; } }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const trigger = document.getElementById('project-toggle');
+  const dialog = document.getElementById('project-dialog');
+  let previousOverflow = '';
+  trigger.addEventListener('click', () => {
+    if (dialog.open) return;
+    previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+  });
+  dialog.querySelector('.project-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    const box = dialog.getBoundingClientRect();
+    if (event.target === dialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    document.body.style.overflow = previousOverflow;
+    trigger.focus();
+  });
+});
+</script>
 </head>
 
 <body>
@@ -66,7 +108,19 @@
   <div class="personalization-controls" aria-label="Customize atmosphere">
     <div class="picker-wrap"><button class="picker-toggle" id="mood-toggle" type="button" aria-expanded="false" aria-controls="mood-options">✦ Mood <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="mood-options" hidden><button type="button" data-mood="auto">✦ Auto Seasonal</button><button type="button" data-mood="dream">Dreaming</button><button type="button" data-mood="dusk">Melancholy</button><button type="button" data-mood="serene">Serenity</button></div></div>
     <div class="picker-wrap"><button class="picker-toggle" id="background-toggle" type="button" aria-expanded="false" aria-controls="background-options">▧ Background <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="background-options" hidden></div></div>
+    <button class="picker-toggle project-toggle" id="project-toggle" type="button" aria-haspopup="dialog" aria-controls="project-dialog">◇ Project</button>
   </div>
+  <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-heading">
+    <div class="project-dialog-header">
+      <div><p class="project-eyebrow">HIRAETH / OTHER SPACES</p><h2 id="project-heading">Project</h2></div>
+      <button type="button" class="project-close" aria-label="Close projects" autofocus>×</button>
+    </div>
+    <p class="project-intro">A few places to stay a little longer.</p>
+    <div class="project-grid">
+      <article class="project-card project-afterglow"><span class="project-symbol" aria-hidden="true">☾</span><h3>Afterglow</h3><p>Phòng nghe nhạc bên biển đêm.</p><span class="project-status">Coming soon</span></article>
+      <article class="project-card project-marginalia"><span class="project-symbol" aria-hidden="true">▤</span><h3>Marginalia</h3><p>Phòng đọc sách và những kỷ niệm bên lề.</p><span class="project-status">Coming soon</span></article>
+    </div>
+  </dialog>
   <div class="glass-container"> <!--Kính container-->
     <div class="sidebar"> <!--Sidebar nút nhấn-->
       <button class="nav-btn active" onclick="openTab(event, 'images')">Images</button>
