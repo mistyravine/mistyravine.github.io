@@ -23,6 +23,10 @@
 
 <style>
 /* Project directory shares the current atmosphere palette. */
+.project-enter { text-decoration: none; transition: background .2s, box-shadow .2s; }
+.project-enter:hover { background: var(--mood-panel, #142940); box-shadow: 0 0 16px var(--mood-line, #69dfff55); }
+.project-enter:focus-visible { outline: 2px solid var(--mood-accent, #69dfff); outline-offset: 4px; }
+
 .project-toggle { margin-left: 18px; }
 .project-dialog { box-sizing: border-box; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 28px; border: 1px solid var(--mood-line, #69dfff); border-radius: 20px; background: var(--mood-glass, #091222); color: var(--mood-soft, #e4f7ff); box-shadow: 0 24px 90px #0009; backdrop-filter: blur(24px); font-family: system-ui, sans-serif; }
 .project-dialog::backdrop { background: rgba(2, 5, 12, .78); backdrop-filter: blur(8px); }
@@ -117,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <p class="project-intro">A few places to stay a little longer.</p>
     <div class="project-grid">
-      <article class="project-card project-afterglow"><span class="project-symbol" aria-hidden="true">☾</span><h3>Afterglow</h3><p>Phòng nghe nhạc bên biển đêm.</p><span class="project-status">Coming soon</span></article>
+      <article class="project-card project-afterglow"><span class="project-symbol" aria-hidden="true">☾</span><h3>Afterglow</h3><p>Phòng nghe nhạc bên biển đêm.</p><a class="project-status project-enter" href="/afterglow/">Enter Afterglow →</a></article>
       <article class="project-card project-marginalia"><span class="project-symbol" aria-hidden="true">▤</span><h3>Marginalia</h3><p>Phòng đọc sách và những kỷ niệm bên lề.</p><span class="project-status">Coming soon</span></article>
     </div>
   </dialog>
