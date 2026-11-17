@@ -116,6 +116,7 @@ window.difyChatbotConfig = {
 
 /* ===== SCRIPT ===== */
 const quoteData = [
+    {"text":"Feet, what do i need you for when i have wings to fly?","author":"#frida kahlo","bg":"https://img.atlasobscura.com/qcNXEnrG6XEcdfP0zMtMd6vM9PhFmsEIiJ3YSAQZOXM/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy8wNmRlNGRjNi00/MjcyLTQ0ODItYmVi/MC0wZWVhZDNlNGRm/NGY2MWY0OWY0ZDhk/Yjg2NmNkNWJfU2Ny/ZWVuIFNob3QgMjAx/OS0wNi0xNyBhdCAx/Mi41Ni4yMyBQTS5w/bmc.png"},
     { text: "One day you will fly", author: "#Kalandra", bg: "https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/08/10/kalandracinematic4_feature.jpg" },
     { text: "I shall never doubt the power of innocent dreamers", author: "#Queen Nehellenia", bg: "https://i.ytimg.com/vi/XKK5WUEMfbE/hqdefault.jpg" },
     { text: "Nothing. I felt nothing. No sadness or anger. No joy. No pain. No pleasure. I was free. Free to move, to go where I please. Free of desire. Free to see the universe for what it was. Empty.", author: "#Sirus", bg: "https://i.ytimg.com/vi/O0pwSQbwKPE/maxresdefault.jpg" },
