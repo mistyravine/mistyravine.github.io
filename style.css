@@ -1494,3 +1494,52 @@ body {
 /* Quotes: 22px content; footers retain the shared 0.75rem size. */
 #quotes .quote-style { font-size:22px; }
 #quotes .quote-style { min-height:0; overflow-y:auto; }
+
+/* Fit the desktop composition to the available screen height.
+   Keep quote typography at 22px in the composition, including when scaled. */
+@media (min-width: 876px) {
+  body {
+    --screen-scale: clamp(.5, calc(100dvh / 900px), 1.15);
+    min-height: 100dvh;
+  }
+  .glass-container {
+    width: min(850px, calc((100vw - 44px) / max(1, var(--screen-scale))));
+    flex-shrink: 0;
+    transform: scale(var(--screen-scale));
+    transform-origin: center;
+  }
+  .hud-top, .hud-clock {
+    top: clamp(24px, 8dvh, 90px);
+    transform: scale(var(--screen-scale));
+  }
+  .hud-top { transform-origin: top left; }
+  .hud-clock { transform-origin: top right; }
+  .hud-now-playing, .hud-bottom-mark {
+    bottom: clamp(16px, 5dvh, 54px);
+    transform: scale(var(--screen-scale));
+  }
+  .hud-now-playing { transform-origin: bottom left; }
+  .hud-bottom-mark { transform-origin: bottom right; }
+  .tesse-image {
+    bottom: clamp(16px, 5dvh, 54px);
+    width: clamp(75px, 16.67dvh, 172.5px);
+    max-height: 18dvh;
+    object-fit: contain;
+  }
+  .personalization-controls {
+    top: clamp(38px, 9dvh, 90px);
+    transform: translateX(-50%) scale(var(--screen-scale));
+    transform-origin: top center;
+  }
+  .picker-menu, .track-menu {
+    max-height: 45dvh;
+    overflow-y: auto;
+  }
+}
+/* Stacked layouts scroll naturally; only the media viewport needs a height cap. */
+@media (max-width: 875px) {
+  .media-column > .media-wrapper {
+    height: clamp(220px, 46dvh, 380px);
+  }
+  .media-extra { height: clamp(64px, 14dvh, 120px); }
+}
