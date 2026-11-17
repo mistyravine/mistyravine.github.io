@@ -1491,7 +1491,6 @@ body {
         z-index: 100;
     }
 }
-/* Quotes: consistent 22px text, including author footers. */
-#quotes .quote-style,
-#quotes .media-footer { font-size:22px; }
+/* Quotes: 22px content; footers retain the shared 0.75rem size. */
+#quotes .quote-style { font-size:22px; }
 #quotes .quote-style { min-height:0; overflow-y:auto; }
