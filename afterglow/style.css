@@ -436,3 +436,25 @@ body[data-fx-theme] .room-status[data-season=ordinary] :is(#room-author,.status-
     body:not(.focus) .moment .moment-copy > :is(.eyebrow,.whisper,.intro,.moment-line) { display:block; }
   }
 }
+
+/* Give the desktop/TV quote a smaller footprint and a little breathing room. */
+@media (min-width:901px) {
+  body:not(.focus) .room-footer {
+    transform:translateY(5px);
+  }
+  .room-status {
+    width:min(700px,100%);
+    min-height:38px;
+    padding:7px 16px;
+    gap:12px;
+  }
+  .room-status .status-copy {
+    font-size:13px;
+    line-height:1.45;
+  }
+  .room-status #room-author { font-size:9px; }
+  .room-status:not([data-season=ordinary]) .status-copy {
+    font-size:clamp(15px,1.4vw,19px);
+    line-height:1.3;
+  }
+}
