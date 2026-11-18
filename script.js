@@ -292,14 +292,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const root=document.documentElement;
   const safeGet=(k,f)=>{try{return localStorage.getItem(k)||f}catch{return f}};
   const safeSet=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
-  const menus=[['mood-toggle','mood-options'],['background-toggle','background-options'],['track-toggle','track-options']];
+  const menus=[['mood-toggle','mood-options'],['background-toggle','background-options'],['effects-toggle','effects-options'],['track-toggle','track-options']].filter(([b,m])=>document.getElementById(b)&&document.getElementById(m));
   function closeMenus(except) { for(const [b,m] of menus) { if(m===except)continue; document.getElementById(m).hidden=true;document.getElementById(b).setAttribute('aria-expanded','false'); } }
   menus.forEach(([b,m])=>{const btn=document.getElementById(b), menu=document.getElementById(m);btn?.addEventListener('click',e=>{e.stopPropagation();const willOpen=menu.hidden;closeMenus(m);menu.hidden=!willOpen;btn.setAttribute('aria-expanded',String(willOpen));});});
   document.addEventListener('click',e=>{if(!e.target.closest('.picker-wrap,.hud-track-select'))closeMenus();});
-  const moodButtons=document.querySelectorAll('[data-mood]');
+  const seasons=Object.entries(window.HIRAETH_SEASONS || {});
+  const moodMenu=document.getElementById('mood-options');
+  for(const [key,season] of seasons){
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.mood=key;
+    button.textContent=season.name;
+    moodMenu.append(button);
+  }
+  const moodButtons=moodMenu.querySelectorAll('[data-mood]');
   function applyMood(key) {
-    if (key !== 'auto' && !HIRAETH_MOODS[key]) key='auto';
-    const palette = key==='auto' ? (window.hiraethSeasonalPalette?.() || HIRAETH_MOODS.dream) : HIRAETH_MOODS[key];
+    const manualPalette = Object.hasOwn(HIRAETH_MOODS,key) ? HIRAETH_MOODS[key] : seasons.find(([seasonKey])=>seasonKey===key)?.[1].palette;
+    if (key !== 'auto' && !manualPalette) key='auto';
+    const palette = key==='auto' ? (window.hiraethSeasonalPalette?.() || HIRAETH_MOODS.dream) : manualPalette;
     Object.entries(palette).forEach(([k,v])=>root.style.setProperty(k,v));
     moodButtons.forEach(b=>b.setAttribute('aria-current',String(b.dataset.mood===key)));
     safeSet('hiraeth-mood',key);
@@ -312,14 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
   safeSet('hiraeth-mood-v4-initialized','1');
   applyMood(initialMood);
   const bgMenu=document.getElementById('background-options');
-  const seasonalBackgrounds={
-    christmas:'images/seasonal/christmas.webp',
-    tet:'images/seasonal/tet.webp',
-    midautumn:'images/seasonal/midautumn.webp',
-    halloween:'images/seasonal/halloween.webp',
-    birthday:'images/seasonal/birthday.webp'
-  };
-  const bgChoices=[{name:'✦ Auto Seasonal',mode:'auto'},...HIRAETH_BACKGROUNDS.map((bg,i)=>({...bg,mode:String(i)}))];
+  const bgChoices=[
+    {name:'✦ Auto Seasonal',mode:'auto'},
+    ...HIRAETH_BACKGROUNDS.map((bg,i)=>({...bg,mode:String(i)})),
+    ...seasons.map(([mode,season])=>({name:season.name,mode,src:season.background}))
+  ];
   let currentBackgroundMode='auto',backgroundLoadId=0;
   bgChoices.forEach(bg=>{
     const b=document.createElement('button');b.type='button';b.textContent=bg.name;
@@ -330,20 +337,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function markBackground(mode){[...bgMenu.children].forEach(b=>b.setAttribute('aria-current',String(b.dataset.background===mode)));}
   function displayBackground(src){document.body.style.backgroundImage=`url("${src.replaceAll('"','%22')}")`;}
   function setBackground(mode){
-    if(mode!=='auto' && (!/^(0|[1-9]\d*)$/.test(mode) || !HIRAETH_BACKGROUNDS[Number(mode)]))mode='auto';
+    const choice=bgChoices.find(bg=>bg.mode===mode);
+    if(!choice)mode='auto';
     currentBackgroundMode=mode;
     safeSet('hiraeth-background-mode',mode);
     markBackground(mode);
     const token=++backgroundLoadId;
     const fallback=HIRAETH_BACKGROUNDS[0]?.src;
-    if(mode!=='auto') {displayBackground(HIRAETH_BACKGROUNDS[Number(mode)].src);return;}
-    const key=window.hiraethSeasonalThemeKey?.();
-    const seasonalSrc=seasonalBackgrounds[key];
+    const key=mode==='auto' ? window.hiraethSeasonalThemeKey?.() : mode;
+    const seasonalSrc=seasons.find(([seasonKey])=>seasonKey===key)?.[1].background;
+    if(mode!=='auto' && !seasonalSrc){displayBackground(choice.src);return;}
     if(!seasonalSrc){if(fallback)displayBackground(fallback);return;}
     // Only swap after the asset loads; missing seasonal assets use the original background.
     const preload=new Image();
-    preload.onload=()=>{if(token===backgroundLoadId && currentBackgroundMode==='auto')displayBackground(seasonalSrc);};
-    preload.onerror=()=>{if(token===backgroundLoadId && currentBackgroundMode==='auto' && fallback)displayBackground(fallback);};
+    preload.onload=()=>{if(token===backgroundLoadId)displayBackground(seasonalSrc);};
+    preload.onerror=()=>{if(token===backgroundLoadId && fallback)displayBackground(fallback);};
     preload.src=seasonalSrc;
   }
   window.hiraethRefreshAutoBackground=()=>{if(currentBackgroundMode==='auto')setBackground('auto');};
@@ -352,6 +360,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const legacyBg=safeGet('hiraeth-background','');
   const initialBg=storedMode || (legacyBg!==''?legacyBg:'auto');
   setBackground(initialBg);
+  const effectButtons=document.querySelectorAll('#effects-options [data-effect]');
+  function applyEffect(key){
+    if(!['auto','rain','snow','sakura'].includes(key))key='auto';
+    safeSet('hiraeth-effect',key);
+    effectButtons.forEach(button=>button.setAttribute('aria-current',String(button.dataset.effect===key)));
+    window.hiraethSetEffect?.(key);
+  }
+  effectButtons.forEach(button=>button.addEventListener('click',()=>{
+    applyEffect(button.dataset.effect);
+    closeMenus();
+  }));
+  applyEffect(safeGet('hiraeth-effect','auto'));
   const audio=document.getElementById('localAudio'), trackMenu=document.getElementById('track-options'), trackName=document.getElementById('hud-track-name');
   HIRAETH_TRACKS.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.textContent=t.name;b.addEventListener('click',async()=>{const wasPlaying=!audio.paused;audio.pause();audio.src=t.src;audio.load();trackName.textContent=t.name;markTrack(i);closeMenus();if(wasPlaying)try{await audio.play()}catch{};});trackMenu.append(b);});
   function markTrack(i){[...trackMenu.children].forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));}markTrack(0);

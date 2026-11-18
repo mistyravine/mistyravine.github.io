@@ -13,6 +13,13 @@
     halloween: {'--mood-accent':'#ffb67b','--mood-soft':'#fff1e5','--mood-muted':'#d2bedc','--mood-glass':'rgba(32,25,45,.86)','--mood-panel':'rgba(41,29,49,.86)','--mood-line':'rgba(255,182,123,.48)'},
     birthday: {'--mood-accent':'#ffd0e9','--mood-soft':'#fff1fb','--mood-muted':'#dacde9','--mood-glass':'rgba(43,31,61,.84)','--mood-panel':'rgba(48,35,66,.85)','--mood-line':'rgba(255,208,233,.50)'}
   };
+  const seasonNames = {
+    christmas:'Christmas', tet:'Tết', midautumn:'Mid-Autumn Festival',
+    halloween:'Halloween', birthday:'Birthday'
+  };
+  window.HIRAETH_SEASONS = Object.fromEntries(Object.entries(seasonNames).map(([key,name])=>[
+    key, {name,palette:palettes[key],background:`images/seasonal/${key}.webp`}
+  ]));
   const greetings = {
     christmas: '🎄 Merry Christmas', tet: '🧧 Chúc Mừng Năm Mới',
     midautumn: '🌕 Happy Mid-Autumn', halloween: '🎃 Happy Halloween',
@@ -149,6 +156,14 @@
     if(weather && isRaining(Number(weather.weather_code),Number(weather.precipitation)))return 'rain';
     return month===12?'snow':month===2?'sakura':'none';
   }
+  let effectChoice='auto';
+  function refreshAtmosphere() {
+    setAtmosphere(effectChoice==='auto' ? selectAtmosphere(lastWeather) : effectChoice);
+  }
+  window.hiraethSetEffect = choice => {
+    effectChoice=choice;
+    refreshAtmosphere();
+  };
   function showWeather(data) {
     const el=document.getElementById('hiraeth-weather');
     if(!el)return;
@@ -160,7 +175,7 @@
   }
   async function refreshWeather() {
     const cache=getStoredWeather();
-    if(cache && Date.now()-cache.at<CACHE_MS){lastWeather=cache.data;showWeather(lastWeather);setAtmosphere(selectAtmosphere(lastWeather));return;}
+    if(cache && Date.now()-cache.at<CACHE_MS){lastWeather=cache.data;showWeather(lastWeather);refreshAtmosphere();return;}
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),8000);
     try {
       const q=new URLSearchParams({...COORDS,current:'temperature_2m,weather_code,precipitation',timezone:TZ});
@@ -173,16 +188,16 @@
       console.info('Hiraeth weather unavailable; seasonal fallback active.',error);
       lastWeather=null;
     } finally {clearTimeout(timeout);}
-    showWeather(lastWeather);setAtmosphere(selectAtmosphere(lastWeather));
+    showWeather(lastWeather);refreshAtmosphere();
   }
   document.addEventListener('DOMContentLoaded',()=>{
     renderEvent();
     const cached=getStoredWeather();
     if(cached && Date.now()-cached.at<CACHE_MS){lastWeather=cached.data;showWeather(lastWeather);}
-    setAtmosphere(selectAtmosphere(lastWeather));
+    refreshAtmosphere();
     refreshWeather();
     setInterval(()=>{if(!document.hidden){renderEvent();refreshWeather();}},REFRESH_MS);
     document.addEventListener('visibilitychange',()=>{if(!document.hidden){renderEvent();refreshWeather();}});
-    reduceMotion.addEventListener?.('change',()=>setAtmosphere(selectAtmosphere(lastWeather)));
+    reduceMotion.addEventListener?.('change',()=>refreshAtmosphere());
   });
 })();
