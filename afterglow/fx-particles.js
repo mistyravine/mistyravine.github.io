@@ -5,6 +5,7 @@
   'use strict';
   function defaultChoice(date=new Date()){
     const month=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Ho_Chi_Minh',month:'numeric'}).format(date));
+    if(month===10)return 'fx5';
     return month===12?'fx3':month===1||month===2?'fx4':'flourish';
   }
   function countFor(mode,density,mobile){const base=mobile?(mode==='fx3'?16:10):(mode==='fx3'?36:20);return Math.round(base*Math.max(0,Math.min(100,density))/50)}

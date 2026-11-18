@@ -29,7 +29,20 @@ $('#add').onclick=()=>$('#playlist-dialog').showModal();document.querySelectorAl
 function applyScene(s){scene=s;document.body.dataset.scene=s;storage.set('scene',s);document.querySelectorAll('button[data-scene]').forEach(b=>{b.classList.toggle('selected',b.dataset.scene===s);b.setAttribute('aria-pressed',String(b.dataset.scene===s))})}document.querySelectorAll('button[data-scene]').forEach(b=>b.onclick=()=>applyScene(b.dataset.scene));applyScene(scene);
 function focusMode(v){closeControls();document.body.classList.toggle('focus',v);$('#focus').setAttribute('aria-pressed',String(v));$('#exit-focus').hidden=!v;(v?$('#exit-focus'):$('#focus')).focus()}$('#focus').onclick=()=>focusMode(!document.body.classList.contains('focus'));$('#exit-focus').onclick=()=>focusMode(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('focus'))focusMode(false)});
 $('#settings').onclick=()=>toggleControl('settings-dialog');$('#motion').checked=storage.get('motion',false);document.body.classList.toggle('motion',$('#motion').checked);$('#motion').onchange=()=>{storage.set('motion',$('#motion').checked);document.body.classList.toggle('motion',$('#motion').checked)};
+function defaultBackground(date = new Date()) {
+  const month = Number(new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Ho_Chi_Minh', month: 'numeric'
+  }).format(date));
+  const seasonalFiles = { 1: 'lny.webp', 2: 'lny.webp', 10: 'halloween.webp', 12: 'christmas.webp' };
+  const file = seasonalFiles[month];
+  return file ? `assets/background/${file}` : '';
+}
+
 const background = $('.landscape');
+const seasonalBackground = defaultBackground();
+if (seasonalBackground) {
+  background.style.setProperty('--seasonal-background', `url("${seasonalBackground}")`);
+}
 const backgroundUrl = $('#custom-url');
 const backgroundFile = $('#custom-file');
 const backgroundStatus = $('#custom-status');
