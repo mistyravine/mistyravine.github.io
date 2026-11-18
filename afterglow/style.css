@@ -458,3 +458,32 @@ body[data-fx-theme] .room-status[data-season=ordinary] :is(#room-author,.status-
     line-height:1.3;
   }
 }
+
+.custom-background {
+  min-width: 0;
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+}
+.custom-background input[type=url] {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--room-panel-deep, #102733);
+  color: var(--ink);
+  font: inherit;
+}
+.custom-background-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+#custom-status {
+  margin: 7px 0 0;
+  font-size: 11px;
+}
+#custom-status:empty {
+  display: none;
+}

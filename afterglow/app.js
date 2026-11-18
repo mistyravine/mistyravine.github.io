@@ -2,7 +2,7 @@ const $=s=>document.querySelector(s);const storage={get(k,d){try{return JSON.par
 const DEFAULT_PLAYLIST={id:'afterglow-default',name:'Afterglow · mặc định',kind:'playlist',youtubeId:'PLOp1UMR_4g-o',url:'https://www.youtube.com/playlist?list=PLOp1UMR_4g-o'};
 function initialSelection(savedLists,savedActive){const playlists=Array.isArray(savedLists)&&savedLists.length?savedLists:[{...DEFAULT_PLAYLIST}];const chosen=playlists.find(x=>x.id===savedActive)||playlists.find(x=>x.id!==DEFAULT_PLAYLIST.id)||playlists[0];return{playlists,activeId:chosen.id}}
 const initial=initialSelection(storage.get('playlists',[]),storage.get('active',null));
-let lists=initial.playlists,active=initial.activeId,player=null,ready=false,loop=true,scene=storage.get('scene','ocean'),objectURL=null;
+let lists=initial.playlists,active=initial.activeId,player=null,ready=false,loop=true,scene=storage.get('scene','ocean');
 let shuffle=storage.get('shuffle',false)===true,shufflePending=false;
 function parseYouTube(value){let u;try{u=new URL(value)}catch{throw Error('Link chưa hợp lệ. Anh kiểm tra lại nhé.')}const host=u.hostname.toLowerCase();if(!['youtube.com','www.youtube.com','m.youtube.com','music.youtube.com','youtu.be','www.youtube-nocookie.com'].includes(host)||!['https:','http:'].includes(u.protocol))throw Error('Anh dùng link từ YouTube nhé.');const list=u.searchParams.get('list');if(list&&/^[a-zA-Z0-9_-]{10,160}$/.test(list)){if(list.startsWith('RD'))throw Error('YouTube Mix có thể thay đổi; anh dùng playlist đã lưu hoặc link video nhé.');return{kind:'playlist',youtubeId:list}}let video=host==='youtu.be'?u.pathname.split('/')[1]:u.searchParams.get('v')||u.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)?.[1];if(video&&/^[a-zA-Z0-9_-]{11}$/.test(video))return{kind:'video',youtubeId:video};throw Error('Không tìm thấy playlist hoặc video trong link này.');}
 function parseMusic(value){let u;try{u=new URL(value)}catch{throw Error('Link chưa hợp lệ. Anh kiểm tra lại nhé.')}if(!['https:','http:'].includes(u.protocol))throw Error('Dùng link YouTube hoặc Spotify nhé.');if(u.hostname==='open.spotify.com'){const match=u.pathname.match(/^\/(?:intl-[a-zA-Z-]+\/)?(?:embed\/)?(playlist|track|album)\/([a-zA-Z0-9]{22})\/?$/);if(!match)throw Error('Spotify hỗ trợ link bài hát, playlist hoặc album công khai.');return{provider:'spotify',kind:match[1],spotifyId:match[2],url:'https://open.spotify.com/'+match[1]+'/'+match[2]}}if(['spotify.link','spoti.fi'].includes(u.hostname))throw Error('Anh mở link rút gọn rồi sao chép địa chỉ open.spotify.com đầy đủ nhé.');return{...parseYouTube(value),provider:'youtube',url:value}}
@@ -28,7 +28,110 @@ syncShuffleButton();
 $('#add').onclick=()=>$('#playlist-dialog').showModal();document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeControlOrDialog(b));document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}}));$('#playlist-form').onsubmit=e=>{e.preventDefault();try{const url=$('#playlist-url').value.trim(),parsed=parseMusic(url),name=$('#playlist-name').value.trim();if(!name)throw Error('Đặt một tên gợi nhớ nhé.');const existing=lists.find(x=>(x.provider||'youtube')===parsed.provider&&x.kind===parsed.kind&&(parsed.provider==='spotify'?x.spotifyId===parsed.spotifyId:x.youtubeId===parsed.youtubeId));let id=existing?.id||crypto.randomUUID();if(existing){existing.name=name;existing.url=parsed.url;}else lists.push({id,name,url,...parsed});persist();$('#form-error').textContent='';$('#playlist-dialog').close();e.target.reset();choose(id,true)}catch(error){$('#form-error').textContent=error.message}};
 function applyScene(s){scene=s;document.body.dataset.scene=s;storage.set('scene',s);document.querySelectorAll('button[data-scene]').forEach(b=>{b.classList.toggle('selected',b.dataset.scene===s);b.setAttribute('aria-pressed',String(b.dataset.scene===s))})}document.querySelectorAll('button[data-scene]').forEach(b=>b.onclick=()=>applyScene(b.dataset.scene));applyScene(scene);
 function focusMode(v){closeControls();document.body.classList.toggle('focus',v);$('#focus').setAttribute('aria-pressed',String(v));$('#exit-focus').hidden=!v;(v?$('#exit-focus'):$('#focus')).focus()}$('#focus').onclick=()=>focusMode(!document.body.classList.contains('focus'));$('#exit-focus').onclick=()=>focusMode(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('focus'))focusMode(false)});
-$('#settings').onclick=()=>toggleControl('settings-dialog');$('#motion').checked=storage.get('motion',false);document.body.classList.toggle('motion',$('#motion').checked);$('#settings-form').onsubmit=e=>e.preventDefault();$('#motion').onchange=()=>{storage.set('motion',$('#motion').checked);document.body.classList.toggle('motion',$('#motion').checked)};$('#custom-file').onchange=e=>{const f=e.target.files[0];if(!f)return;if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(f);const bg=$('.landscape');bg.replaceChildren();bg.style.backgroundImage='';if(f.type.startsWith('video/')){const v=document.createElement('video');v.src=objectURL;v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;bg.append(v);v.play().catch(()=>{})}else bg.style.backgroundImage=`url("${objectURL}")`};function tick(){$('#clock').textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit'}).format(new Date())}tick();setInterval(tick,1000);render();if(selected()){setTrack(selected().name);$('#external').href=selected().url;$('#external').hidden=false}
+$('#settings').onclick=()=>toggleControl('settings-dialog');$('#motion').checked=storage.get('motion',false);document.body.classList.toggle('motion',$('#motion').checked);$('#motion').onchange=()=>{storage.set('motion',$('#motion').checked);document.body.classList.toggle('motion',$('#motion').checked)};
+const background = $('.landscape');
+const backgroundUrl = $('#custom-url');
+const backgroundFile = $('#custom-file');
+const backgroundStatus = $('#custom-status');
+let activeFileUrl = null;
+let backgroundRequest = 0;
+
+function applyCustomBackground(source, video, fileUrl = null) {
+  background.replaceChildren(...(video ? [video] : []));
+  background.style.backgroundImage = video || !source ? '' : `url(${JSON.stringify(source)})`;
+  if (activeFileUrl) URL.revokeObjectURL(activeFileUrl);
+  activeFileUrl = fileUrl;
+  if (video) video.play().catch(() => {});
+}
+
+function loadBackgroundMedia(source, isVideo) {
+  return new Promise((resolve, reject) => {
+    const media = isVideo ? document.createElement('video') : new Image();
+    if (isVideo) {
+      media.muted = true;
+      media.loop = true;
+      media.playsInline = true;
+      media.preload = 'auto';
+      media.onloadeddata = () => resolve(media);
+    } else {
+      media.onload = () => resolve(null);
+    }
+    media.onerror = reject;
+    media.src = source;
+  });
+}
+
+async function setBackgroundUrl(value) {
+  const request = ++backgroundRequest;
+  let url;
+  try {
+    url = new URL(value.trim());
+    if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
+  } catch {
+    backgroundStatus.textContent = 'Nhập URL trực tiếp bắt đầu bằng https:// hoặc http://.';
+    return;
+  }
+  backgroundStatus.textContent = 'Đang tải nền…';
+  try {
+    const video = await loadBackgroundMedia(url.href, /\.(mp4|webm)$/i.test(url.pathname));
+    if (request !== backgroundRequest) return;
+    applyCustomBackground(url.href, video);
+    storage.set('backgroundUrl', url.href);
+    backgroundUrl.value = url.href;
+    backgroundFile.value = '';
+    backgroundStatus.textContent = 'Đã áp dụng nền từ URL.';
+  } catch {
+    if (request === backgroundRequest) {
+      backgroundStatus.textContent = 'Không tải được nền. Hãy dùng link ảnh trực tiếp hoặc video MP4/WebM.';
+    }
+  }
+}
+
+$('#settings-form').onsubmit = event => {
+  event.preventDefault();
+  setBackgroundUrl(backgroundUrl.value);
+};
+
+backgroundFile.onchange = async () => {
+  const file = backgroundFile.files[0];
+  if (!file) return;
+  const request = ++backgroundRequest;
+  const source = URL.createObjectURL(file);
+  backgroundStatus.textContent = 'Đang tải nền…';
+  try {
+    const video = await loadBackgroundMedia(source, file.type.startsWith('video/') || /\.(mp4|webm)$/i.test(file.name));
+    if (request !== backgroundRequest) {
+      URL.revokeObjectURL(source);
+      return;
+    }
+    applyCustomBackground(source, video, source);
+    storage.set('backgroundUrl', null);
+    backgroundUrl.value = '';
+    backgroundStatus.textContent = 'Đã áp dụng nền từ tệp.';
+  } catch {
+    URL.revokeObjectURL(source);
+    if (request === backgroundRequest) {
+      backgroundFile.value = '';
+      backgroundStatus.textContent = 'Không mở được tệp này.';
+    }
+  }
+};
+
+$('#custom-default').onclick = () => {
+  ++backgroundRequest;
+  applyCustomBackground(null, null);
+  storage.set('backgroundUrl', null);
+  backgroundFile.value = '';
+  backgroundUrl.value = '';
+  backgroundStatus.textContent = 'Đã khôi phục nền mặc định.';
+};
+
+const savedBackgroundUrl = storage.get('backgroundUrl', '');
+if (typeof savedBackgroundUrl === 'string' && savedBackgroundUrl) {
+  backgroundUrl.value = savedBackgroundUrl;
+  setBackgroundUrl(savedBackgroundUrl);
+}
+function tick(){$('#clock').textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit'}).format(new Date())}tick();setInterval(tick,1000);render();if(selected()){setTrack(selected().name);$('#external').href=selected().url;$('#external').hidden=false}
 
 function icon(type){const paths={play:'<path d="M8 5v14l11-7z"/>',pause:'<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>',prev:'<path d="M5 5h2v14H5zM19 5v14L8 12z"/>',next:'<path d="M17 5h2v14h-2zM5 5v14l11-7z"/>'};return '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'+paths[type]+'</svg>'}$('#play').innerHTML=icon('play');$('#prev').innerHTML=icon('prev');$('#next').innerHTML=icon('next');
 
