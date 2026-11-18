@@ -35,6 +35,13 @@
 .project-dialog h2 { margin: 0; font: italic 32px Georgia, serif; }
 .project-close { flex: none; width: 36px; height: 36px; border: 1px solid var(--mood-line, #69dfff); border-radius: 10px; color: inherit; background: transparent; font-size: 24px; cursor: pointer; }
 .project-close:focus-visible { outline: 2px solid var(--mood-accent, #69dfff); outline-offset: 3px; }
+.project-card.project-afterglow {
+  color: #fff;
+  background: linear-gradient(110deg, #07101ae8, #07101a70), url('/afterglow/assets/night.png') center / cover no-repeat #07101a;
+}
+.project-afterglow p { color: #e4edf5; }
+.project-afterglow .project-enter { background-color: #07101acd; }
+.project-afterglow .project-enter:hover { background-color: #142940; }
 .project-intro { color: var(--mood-muted, #b4c5d8); font-size: 13px; line-height: 1.6; margin: 16px 0 24px; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .project-card { padding: 22px; border: 1px solid var(--mood-line, #69dfff); border-radius: 14px; background: linear-gradient(145deg, #ffffff08, #ffffff02); }
