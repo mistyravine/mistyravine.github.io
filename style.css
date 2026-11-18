@@ -863,15 +863,44 @@ body {
   border-color: var(--mood-line);
 }
 
-.personalization-controls {
-  position: fixed;
+.hiraeth-stage {
+  position: relative;
+}
+
+.atmosphere-panel {
+  position: relative;
   z-index: 30;
-  top: 9%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
+  box-sizing: border-box;
+  width: max-content;
   max-width: calc(100vw - 24px);
+  padding: 9px 12px 10px;
+  border: 1px solid var(--mood-line);
+  border-radius: 14px;
+  background: var(--mood-glass);
+  text-align: center;
+}
+
+.atmosphere-panel .top-quote-colors {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.personalization-controls,
+.atmosphere-pickers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.atmosphere-project {
+  flex: none;
+  padding-left: 8px;
+  border-left: 1px solid var(--mood-line);
+}
+
+.stage-art {
+  display: none;
 }
 
 .picker-wrap,
@@ -1436,24 +1465,17 @@ body {
 }
 
 @media (max-width:875px) {
-  .personalization-controls {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 90%;
+  .atmosphere-panel {
     margin: 0 auto 12px;
-    justify-content: center;
+  }
+
+  .atmosphere-pickers {
+    flex-wrap: wrap;
   }
 
   .picker-menu {
     max-height: 55dvh;
     overflow-y: auto;
-  }
-
-  .picker-wrap:last-child .picker-menu {
-    left: auto;
-    right: 0;
   }
 
   .track-menu {
@@ -1500,23 +1522,40 @@ body {
 @media (min-width: 876px) {
   body {
     --screen-scale: clamp(.5, calc(100dvh / 900px), 1.15);
+    --hud-scale: calc(var(--screen-scale) * 1.08);
     min-height: 100dvh;
   }
   .glass-container {
-    width: min(892px, calc((100vw - 44px) / max(1, var(--screen-scale))));
+    --glass-width: min(892px, calc((100vw - 44px) / max(1, var(--screen-scale))));
+    --art-width: clamp(0px, calc((100vw / var(--screen-scale) - var(--glass-width) - 22px) / 2 - 36px), 150px);
+    width: var(--glass-width);
     flex-shrink: 0;
     transform: scale(var(--screen-scale));
     transform-origin: center;
   }
+  .stage-art {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: var(--art-width);
+    height: auto;
+    max-height: 75%;
+    object-fit: contain;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .stage-art-left { right: calc(100% + 16px); }
+  .stage-art-right { left: calc(100% + 16px); }
+
   .hud-top, .hud-clock {
-    top: clamp(24px, 8dvh, 90px);
-    transform: scale(var(--screen-scale));
+    top: clamp(12px, 6dvh, 72px);
+    transform: scale(var(--hud-scale));
   }
   .hud-top { transform-origin: top left; }
   .hud-clock { transform-origin: top right; }
   .hud-now-playing, .hud-bottom-mark {
-    bottom: clamp(16px, 5dvh, 54px);
-    transform: scale(var(--screen-scale));
+    bottom: clamp(12px, 4dvh, 48px);
+    transform: scale(var(--hud-scale));
   }
   .hud-now-playing { transform-origin: bottom left; }
   .hud-bottom-mark { transform-origin: bottom right; }
@@ -1526,10 +1565,11 @@ body {
     max-height: 18dvh;
     object-fit: contain;
   }
-  .personalization-controls {
-    top: clamp(38px, 9dvh, 90px);
-    transform: translateX(-50%) scale(var(--screen-scale));
-    transform-origin: top center;
+  .atmosphere-panel {
+    position: absolute;
+    left: 50%;
+    bottom: calc(50% + 231.5px * var(--screen-scale) + 18px);
+    transform: translateX(-50%);
   }
   .picker-menu, .track-menu {
     max-height: 45dvh;
@@ -1557,4 +1597,36 @@ body {
   }
 
   .media-extra { height: clamp(64px, 14dvh, 120px); }
+}
+
+@media (min-width: 876px) and (max-height: 460px) {
+  body {
+    position: relative;
+    min-height: 460px;
+  }
+
+  .hud-top, .hud-clock, .hud-now-playing, .hud-bottom-mark {
+    position: absolute;
+  }
+}
+
+@media (max-width: 480px) {
+  .personalization-controls {
+    position: relative;
+  }
+
+  .atmosphere-pickers .picker-wrap {
+    position: static;
+  }
+
+  .atmosphere-pickers .picker-menu {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-art {
+    display: none;
+  }
 }

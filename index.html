@@ -3,7 +3,7 @@
 
 <head>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=atmosphere-panel-1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -27,7 +27,6 @@
 .project-enter:hover { background: var(--mood-panel, #142940); box-shadow: 0 0 16px var(--mood-line, #69dfff55); }
 .project-enter:focus-visible { outline: 2px solid var(--mood-accent, #69dfff); outline-offset: 4px; }
 
-.project-toggle { margin-left: 18px; }
 .project-dialog { box-sizing: border-box; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 28px; border: 1px solid var(--mood-line, #69dfff); border-radius: 20px; background: var(--mood-glass, #091222); color: var(--mood-soft, #e4f7ff); box-shadow: 0 24px 90px #0009; backdrop-filter: blur(24px); font-family: system-ui, sans-serif; }
 .project-dialog::backdrop { background: rgba(2, 5, 12, .78); backdrop-filter: blur(8px); }
 .project-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
@@ -49,8 +48,7 @@
 .project-card h3 { margin: 0 0 10px; font: 24px Georgia, serif; }
 .project-card p { margin: 0 0 24px; min-height: 44px; color: var(--mood-muted, #b4c5d8); font-size: 12px; line-height: 1.8; }
 .project-status { display: inline-block; border: 1px solid var(--mood-line, #69dfff); border-radius: 99px; padding: 6px 10px; font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mood-accent, #69dfff); }
-@media (max-width: 875px) { .personalization-controls { flex-wrap: wrap; } .project-toggle { margin-left: 12px; } }
-@media (max-width: 480px) { .project-dialog { padding: 22px; } .project-grid { grid-template-columns: 1fr; } .project-card { padding: 18px; } .project-symbol { margin-bottom: 12px; } .project-card p { min-height: 0; margin-bottom: 16px; } .project-toggle { margin-left: 4px; } }
+@media (max-width: 480px) { .project-dialog { padding: 22px; } .project-grid { grid-template-columns: 1fr; } .project-card { padding: 18px; } .project-symbol { margin-bottom: 12px; } .project-card p { min-height: 0; margin-bottom: 16px; } }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,21 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <img id="loader-bg" src="" alt="Loading Background">
     <h1 class="loading-text" style="font-family: 'Playwrite AU TAS', cursive;">Stay a while...</h1>
   </div>
-<!--Chạy chữ-->
-  <div class="name-container top-quote-colors" translate="no"
-    style="font-size:14px;position:absolute; top:3%; left:50%; transform:translate(-50%, -50%); text-align:center; margin:auto">
-    <div class="layer1 top-quote nameWave" style="background-image: repeating-linear-gradient(-45deg, 
-        #fff 3%, 
-        #00ffff 26.5%, 
-        #fff 50%
-    );">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
-      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
-    <div class="layer2 top-quote" style="text-shadow: 
-        #002fff 0px 0px 0.2rem, 
-        #0040ff 0px 0px 0.2rem, 
-        #0088ff 0px 0px 0.2rem;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
-      𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
-  </div>
   <!--Mưa-->
   <div class="rain" id="rainContainer" aria-hidden="true"></div>
   <div id="seasonal-particles" class="seasonal-particles" aria-hidden="true"></div>
@@ -116,12 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="desktop-decoration hud-bottom-mark" aria-hidden="true">EST. 2026 <span>//</span> RAYNE<br><small>MEMORIES IN MOTION</small></div>
   <div class="desktop-decoration hud-corner hud-corner-left" aria-hidden="true"></div>
   <div class="desktop-decoration hud-corner hud-corner-right" aria-hidden="true"></div>
-  <div class="personalization-controls" aria-label="Customize atmosphere">
-    <div class="picker-wrap"><button class="picker-toggle" id="mood-toggle" type="button" aria-expanded="false" aria-controls="mood-options">✦ Mood <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="mood-options" hidden><button type="button" data-mood="auto">✦ Auto Seasonal</button><button type="button" data-mood="dream">Dreaming</button><button type="button" data-mood="dusk">Melancholy</button><button type="button" data-mood="serene">Serenity</button></div></div>
-    <div class="picker-wrap"><button class="picker-toggle" id="background-toggle" type="button" aria-expanded="false" aria-controls="background-options">▧ Background <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="background-options" hidden></div></div>
-    <div class="picker-wrap"><button class="picker-toggle" id="effects-toggle" type="button" aria-expanded="false" aria-controls="effects-options">❋ Effects <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="effects-options" hidden><button type="button" data-effect="auto">✦ Auto</button><button type="button" data-effect="rain">Rain · Mưa</button><button type="button" data-effect="snow">Snow · Tuyết</button><button type="button" data-effect="sakura">Sakura · Hoa đào</button></div></div>
-    <button class="picker-toggle project-toggle" id="project-toggle" type="button" aria-haspopup="dialog" aria-controls="project-dialog">◇ Project</button>
-  </div>
   <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-heading">
     <div class="project-dialog-header">
       <div><p class="project-eyebrow">HIRAETH / OTHER SPACES</p><h2 id="project-heading">Project</h2></div>
@@ -133,7 +110,35 @@ document.addEventListener('DOMContentLoaded', () => {
       <article class="project-card project-marginalia"><span class="project-symbol" aria-hidden="true">▤</span><h3>Marginalia</h3><p>Phòng đọc sách và những kỷ niệm bên lề.</p><span class="project-status">Coming soon</span></article>
     </div>
   </dialog>
-  <div class="glass-container"> <!--Kính container-->
+  <div class="hiraeth-stage">
+    <header class="atmosphere-panel">
+      <div class="name-container top-quote-colors" translate="no">
+        <div class="layer1 top-quote nameWave" style="background-image: repeating-linear-gradient(-45deg, 
+            #fff 3%, 
+            #00ffff 26.5%, 
+            #fff 50%
+        );">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+          𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+        <div class="layer2 top-quote" style="text-shadow: 
+            #002fff 0px 0px 0.2rem, 
+            #0040ff 0px 0px 0.2rem, 
+            #0088ff 0px 0px 0.2rem;">𝐼 𝑑𝑟𝑒𝑎𝑚 𝑚𝑦 𝑝𝑎𝑖𝑛𝑡𝑖𝑛𝑔
+          𝑎𝑛𝑑 𝐼 𝑝𝑎𝑖𝑛𝑡 𝑚𝑦 𝑑𝑟𝑒𝑎𝑚 </div>
+      </div>
+      <div class="personalization-controls" aria-label="Customize atmosphere">
+        <div class="atmosphere-pickers">
+          <div class="picker-wrap"><button class="picker-toggle" id="mood-toggle" type="button" aria-expanded="false" aria-controls="mood-options">✦ Mood <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="mood-options" hidden><button type="button" data-mood="auto">✦ Auto Seasonal</button><button type="button" data-mood="dream">Dreaming</button><button type="button" data-mood="dusk">Melancholy</button><button type="button" data-mood="serene">Serenity</button></div></div>
+          <div class="picker-wrap"><button class="picker-toggle" id="background-toggle" type="button" aria-expanded="false" aria-controls="background-options">▧ Background <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="background-options" hidden></div></div>
+          <div class="picker-wrap"><button class="picker-toggle" id="effects-toggle" type="button" aria-expanded="false" aria-controls="effects-options">❋ Effects <span class="picker-chevron" aria-hidden="true"></span></button><div class="picker-menu" id="effects-options" hidden><button type="button" data-effect="auto">✦ Auto</button><button type="button" data-effect="rain">Rain · Mưa</button><button type="button" data-effect="snow">Snow · Tuyết</button><button type="button" data-effect="sakura">Sakura · Hoa đào</button></div></div>
+        </div>
+        <div class="atmosphere-project">
+          <button class="picker-toggle project-toggle" id="project-toggle" type="button" aria-haspopup="dialog" aria-controls="project-dialog">◇ Project</button>
+        </div>
+      </div>
+    </header>
+    <div class="glass-container"> <!--Kính container-->
+      <img class="stage-art stage-art-left" src="https://64.media.tumblr.com/a88b14e9995f38f2c98c06b0291ce8b7/a528e1040833831e-b6/s250x400/fa2059a84fa85d6621deea36da2ba14dbfcd7f60.gif" alt="" decoding="async">
+      <img class="stage-art stage-art-right" src="https://64.media.tumblr.com/a6778fe79cac1ec649234680a97f12a5/a528e1040833831e-90/s250x400/b921d219029718186b82588823eed51d9fae458e.gifv" alt="" decoding="async">
     <div class="sidebar"> <!--Sidebar nút nhấn-->
       <button class="nav-btn active" onclick="openTab(event, 'images')">Images</button>
       <button class="nav-btn" onclick="openTab(event, 'quotes')">Quotes</button>
@@ -205,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="bottom-companions">
   <aside class="hud-now-playing" aria-label="Music status">
