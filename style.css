@@ -1571,6 +1571,9 @@ body {
     bottom: calc(50% + 231.5px * var(--screen-scale) + 18px);
     transform: translateX(-50%);
   }
+  .personalization-controls {
+    zoom: var(--screen-scale);
+  }
   .picker-menu, .track-menu {
     max-height: 45dvh;
     overflow-y: auto;
