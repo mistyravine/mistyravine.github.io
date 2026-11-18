@@ -1300,7 +1300,7 @@ body {
 @media (max-width: 875px) {
   body {
     display: block;
-    padding: 10vh 0;
+    padding: clamp(12px, 2.2dvh, 24px) 0 10vh;
     height: auto;
   }
 
@@ -1527,7 +1527,9 @@ body {
   }
   .glass-container {
     --glass-width: min(892px, calc((100vw - 44px) / max(1, var(--screen-scale))));
-    --art-width: clamp(0px, calc((100vw / var(--screen-scale) - var(--glass-width) - 22px) / 2 - 36px), 150px);
+    --art-gutter: max(0px, calc((100vw / var(--screen-scale) - var(--glass-width) - 22px) / 2));
+    --art-width: clamp(0px, calc(var(--art-gutter) - 24px), 150px);
+    --art-center: calc(100% + 1px + var(--art-gutter) / 2);
     width: var(--glass-width);
     flex-shrink: 0;
     transform: scale(var(--screen-scale));
@@ -1541,11 +1543,16 @@ body {
     height: auto;
     max-height: 75%;
     object-fit: contain;
-    transform: translateY(-50%);
     pointer-events: none;
   }
-  .stage-art-left { right: calc(100% + 16px); }
-  .stage-art-right { left: calc(100% + 16px); }
+  .stage-art-left {
+    right: var(--art-center);
+    transform: translate(50%, -50%);
+  }
+  .stage-art-right {
+    left: var(--art-center);
+    transform: translate(-50%, -50%);
+  }
 
   .hud-top, .hud-clock {
     top: clamp(12px, 6dvh, 72px);
@@ -1566,9 +1573,9 @@ body {
     object-fit: contain;
   }
   .atmosphere-panel {
-    position: absolute;
+    position: fixed;
+    top: clamp(12px, 2.2dvh, 24px);
     left: 50%;
-    bottom: calc(50% + 231.5px * var(--screen-scale) + 18px);
     transform: translateX(-50%);
   }
   .personalization-controls {
