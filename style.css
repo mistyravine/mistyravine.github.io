@@ -730,8 +730,8 @@ body {
 
 .glass-container {
   display: flex;
-  width: 850px;
-  height: 420px;
+  width: 892px;
+  height: 441px;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -1503,7 +1503,7 @@ body {
     min-height: 100dvh;
   }
   .glass-container {
-    width: min(850px, calc((100vw - 44px) / max(1, var(--screen-scale))));
+    width: min(892px, calc((100vw - 44px) / max(1, var(--screen-scale))));
     flex-shrink: 0;
     transform: scale(var(--screen-scale));
     transform-origin: center;
@@ -1540,6 +1540,21 @@ body {
 @media (max-width: 875px) {
   .media-column > .media-wrapper {
     height: clamp(220px, 46dvh, 380px);
+    overflow-x: hidden;
   }
+
+  .media-content {
+    background: #000;
+  }
+
+  .media-content img,
+  .media-content video {
+    object-fit: contain;
+  }
+
+  .media-footer {
+    overflow-wrap: anywhere;
+  }
+
   .media-extra { height: clamp(64px, 14dvh, 120px); }
 }
