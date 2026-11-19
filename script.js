@@ -122,6 +122,7 @@ const quoteData = [
     { text: "Nothing. I felt nothing. No sadness or anger. No joy. No pain. No pleasure. I was free. Free to move, to go where I please. Free of desire. Free to see the universe for what it was. Empty.", author: "#Sirus", bg: "https://i.ytimg.com/vi/O0pwSQbwKPE/maxresdefault.jpg" },
     { text: "If I were you, I'd curse your incompetence!", author: "#Moriya Minakata #Last Blade", bg: "https://www.arcadequartermaster.com/lb2/win_moriya.png" },
     { text: "Nothing can erase my pain", author: "#Magician", bg: "https://i.ytimg.com/vi/PBnwj8WYNaY/hqdefault.jpg" },
+    { text: "Friend or foe, I always repay my debts", author: "#Fa Zheng", bg: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1019982/ss_5aa335782d4a40ecc01416d8c50637a877554e25.1920x1080.jpg?t=1713334352" },
 ];
 
 function loadQuotes() {
@@ -140,6 +141,7 @@ const galleryData = {
         { src: "https://i.ytimg.com/vi/rm8Ctdm3oNM/maxresdefault.jpg", tag: "#Maria" }
     ],
     games: [
+        { type: "youtube", src: "https://www.youtube.com/embed/sRsoqlhv-HU", tag: "#Swear To My Bones" },
         { type: "youtube", src: "https://www.youtube.com/embed/5v025kIQBhY", tag: "#P4" },
         { type: "youtube", src: "https://www.youtube.com/embed/Z2sMGO38nAo", tag: "#Cookie Run" },
         { type: "img", src: "https://assets-prd.ignimgs.com/2024/04/08/persona-1712577088693.png", tag: "#Persona" },
@@ -157,7 +159,8 @@ const galleryData = {
     ],
     videos: [
         { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
-        { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" }
+        { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" },
+        { type: "youtube", src: "https://www.youtube.com/embed/488YxXFIpz8", tag: "#Capirinha" }
     ],
     personal: [
         {
