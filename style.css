@@ -1469,8 +1469,13 @@ body {
     margin: 0 auto 12px;
   }
 
+  .personalization-controls {
+    /* Account for the panel's viewport margins, padding and border. */
+    zoom: min(1, calc((100vw - 50px) / 410px));
+  }
+
   .atmosphere-pickers {
-    flex-wrap: wrap;
+    flex: none;
   }
 
   .picker-menu {
