@@ -160,8 +160,7 @@ const galleryData = {
     videos: [
         { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
         { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" },
-        { type: "youtube", src: "https://www.youtube.com/embed/488YxXFIpz8", tag: "#Capirinha" },
-        { type: "instagram", src: "https://www.instagram.com/reel/DgKsCBAy3Yg/", tag: "@mooochisupine" }
+        { type: "youtube", src: "https://www.youtube.com/embed/488YxXFIpz8", tag: "#Capirinha" }
     ],
     personal: [
         {
@@ -212,19 +211,6 @@ function renderSection(sectionId) {
 
             // Logic cũ cho các tab media (images, games, music, videos)
             let content = '';
-            if (item.type === 'instagram') {
-                return `
-                <div class="media-card media-card-instagram">
-                  <div class="media-instagram">
-                    <div class="media-instagram-fit">
-                      <blockquote class="instagram-media" data-instgrm-permalink="${item.src}" data-instgrm-version="14">
-                        <a href="${item.src}" target="_blank" rel="noopener noreferrer">Instagram Reel · ${item.tag}</a>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <div class="media-footer"><a href="${item.src}" target="_blank" rel="noopener noreferrer">Xem trên Instagram · ${item.tag}</a></div>
-                </div>`;
-            }
             if (item.type === 'youtube') {
                 content = `<iframe class="js-video" loading="lazy" src="${item.src}${item.src.includes('?') ? '&' : '?'}enablejsapi=1" title="${item.tag}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
             } else if (item.type === 'video') {
@@ -239,29 +225,6 @@ function renderSection(sectionId) {
               <div class="media-footer">${item.tag}</div>
             </div>`;
         }).join('');
-        const reelFrames = container.querySelectorAll('.media-instagram-fit');
-        if (reelFrames.length) {
-            for (const reel of reelFrames) {
-                const frame = reel.parentElement;
-                const resize = new ResizeObserver(() => {
-                    if (!frame.clientHeight || !reel.offsetHeight) return;
-                    const scale = Math.min(1, (frame.clientHeight - 8) / reel.offsetHeight);
-                    reel.style.setProperty('--reel-scale', Math.max(0, scale));
-                });
-                resize.observe(frame);
-                resize.observe(reel);
-            }
-
-            if (window.instgrm?.Embeds) {
-                window.instgrm.Embeds.process();
-            } else {
-                const embedScript = document.createElement('script');
-                embedScript.src = 'https://www.instagram.com/embed.js';
-                embedScript.async = true;
-                embedScript.addEventListener('load', () => window.instgrm?.Embeds.process());
-                document.head.append(embedScript);
-            }
-        }
         renderedSections.add(sectionId);
     }
 }
