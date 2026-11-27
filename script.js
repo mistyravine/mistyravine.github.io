@@ -160,7 +160,8 @@ const galleryData = {
     videos: [
         { type: "video", src: "videos/Iloveyou.mp4", tag: "#Yuna" },
         { type: "youtube", src: "https://www.youtube.com/embed/vZO6Q0RfzS4", tag: "#Mistico" },
-        { type: "youtube", src: "https://www.youtube.com/embed/488YxXFIpz8", tag: "#Capirinha" }
+        { type: "youtube", src: "https://www.youtube.com/embed/488YxXFIpz8", tag: "#Capirinha" },
+        { type: "video", src: "videos/luvsic.mp4", tag: "#Luv(sic)" }
     ],
     personal: [
         {
