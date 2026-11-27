@@ -1645,3 +1645,25 @@ body {
     display: none;
   }
 }
+
+.media-instagram {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+}
+
+.media-instagram .instagram-media,
+.media-instagram iframe {
+  display: block;
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  border: 0;
+}
+
+.media-card-instagram a {
+  color: var(--mood-soft, #e4f7ff);
+}
