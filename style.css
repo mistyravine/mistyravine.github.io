@@ -1647,10 +1647,18 @@ body {
 }
 
 .media-instagram {
+  position: relative;
   flex: 1;
   min-height: 0;
-  overflow: auto;
-  padding: 8px;
+  overflow: clip;
+}
+
+.media-instagram-fit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(360px, calc(100% - 16px));
+  transform: translate(-50%, -50%) scale(var(--reel-scale, 1));
 }
 
 .media-instagram .instagram-media,

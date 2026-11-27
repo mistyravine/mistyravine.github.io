@@ -215,10 +215,12 @@ function renderSection(sectionId) {
             if (item.type === 'instagram') {
                 return `
                 <div class="media-card media-card-instagram">
-                  <div class="media-instagram" tabindex="0" role="region" aria-label="Instagram Reel">
-                    <blockquote class="instagram-media" data-instgrm-permalink="${item.src}" data-instgrm-version="14">
-                      <a href="${item.src}" target="_blank" rel="noopener noreferrer">Instagram Reel · ${item.tag}</a>
-                    </blockquote>
+                  <div class="media-instagram">
+                    <div class="media-instagram-fit">
+                      <blockquote class="instagram-media" data-instgrm-permalink="${item.src}" data-instgrm-version="14">
+                        <a href="${item.src}" target="_blank" rel="noopener noreferrer">Instagram Reel · ${item.tag}</a>
+                      </blockquote>
+                    </div>
                   </div>
                   <div class="media-footer"><a href="${item.src}" target="_blank" rel="noopener noreferrer">Xem trên Instagram · ${item.tag}</a></div>
                 </div>`;
@@ -237,7 +239,19 @@ function renderSection(sectionId) {
               <div class="media-footer">${item.tag}</div>
             </div>`;
         }).join('');
-        if (container.querySelector('.instagram-media')) {
+        const reelFrames = container.querySelectorAll('.media-instagram-fit');
+        if (reelFrames.length) {
+            for (const reel of reelFrames) {
+                const frame = reel.parentElement;
+                const resize = new ResizeObserver(() => {
+                    if (!frame.clientHeight || !reel.offsetHeight) return;
+                    const scale = Math.min(1, (frame.clientHeight - 8) / reel.offsetHeight);
+                    reel.style.setProperty('--reel-scale', Math.max(0, scale));
+                });
+                resize.observe(frame);
+                resize.observe(reel);
+            }
+
             if (window.instgrm?.Embeds) {
                 window.instgrm.Embeds.process();
             } else {
